@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café con Fe | Tu espacio para buscar a Dios</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://ibb.co/vvKmQXzX">
-    <!-- Google Fonts -->
+    
+    <!-- Favicon para la pestaña del navegador -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/vvKmQXzX/logo.png">
+    
+    <!-- Tipografías elegantes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -23,7 +26,6 @@
             --text-main: #3a322d;
             --text-muted: #7a6e65;
             --border-color: #f0e6df;
-            --transition-speed: 0.8s;
         }
 
         * {
@@ -32,8 +34,8 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        html { 
+            scroll-behavior: smooth; 
         }
 
         body {
@@ -41,16 +43,9 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            opacity: 0;
-            animation: fadeInBody 0.5s ease forward 0.1s;
-            animation-fill-mode: forwards;
         }
 
-        @keyframes fadeInBody {
-            to { opacity: 1; }
-        }
-
-        /* ================= SPLASH / INTRO ANIMATION ================= */
+        /* ================= OVERLAY DE BIENVENIDA (SPLASH ANIMATION) ================= */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -82,11 +77,11 @@
             height: 140px;
             margin-bottom: 25px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, rgba(255,255,255,0) 70%);
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(140, 98, 57, 0.1);
+            box-shadow: 0 10px 30px rgba(140, 98, 57, 0.12);
             animation: pulseGlow 3s infinite alternate;
         }
 
@@ -95,7 +90,6 @@
             height: 100px;
             object-fit: contain;
             border-radius: 50%;
-            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .intro-title {
@@ -125,14 +119,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Class added after intro finishes to lift logo & hide overlay */
+        /* Estado final tras terminar la bienvenida */
         .intro-complete #intro-overlay {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
 
-        /* ================= HEADER & NAV ================= */
+        /* ================= HEADER & NAVEGACIÓN ================= */
         header {
             position: fixed;
             top: 0;
@@ -146,7 +140,6 @@
             background: rgba(253, 251, 247, 0.92);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(240, 230, 223, 0.6);
-            transition: all 0.4s ease;
         }
 
         .brand-container {
@@ -162,15 +155,14 @@
             border-radius: 50%;
             object-fit: contain;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.4s ease;
-            opacity: 0; /* Hidden initially, animates in after intro */
+            opacity: 0;
             transform: scale(0.5);
+            transition: opacity 0.8s ease 0.3s, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
         }
 
         .intro-complete .header-logo {
             opacity: 1;
             transform: scale(1);
-            transition: opacity 0.8s ease 0.4s, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
         }
 
         .brand-name {
@@ -208,15 +200,10 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--coffee-accent);
-        }
+        nav a:hover { color: var(--coffee-accent); }
+        nav a:hover::after { width: 100%; }
 
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* ================= HERO SECTION ================= */
+        /* ================= SECCIÓN HERO ================= */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -226,15 +213,13 @@
             text-align: center;
             padding: 140px 20px 80px 20px;
             background: radial-gradient(circle at center, rgba(212,175,55,0.06) 0%, rgba(253,251,247,1) 70%);
-            position: relative;
-            overflow: hidden;
         }
 
         .hero-content {
             max-width: 800px;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 1s ease 0.8s, transform 1s ease 0.8s;
+            transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
         }
 
         .intro-complete .hero-content {
@@ -293,31 +278,19 @@
             box-shadow: 0 12px 25px rgba(140, 98, 57, 0.25);
         }
 
-        /* ================= CARDS / SECTIONS ================= */
+        /* ================= SECCIÓN DE SECCIONES / CONTENIDO ================= */
         .section {
             padding: 100px 8%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-subtitle {
-            color: var(--gold-accent);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
         .section-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
             color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .grid-3 {
@@ -362,13 +335,11 @@
             font-weight: 300;
         }
 
-        /* ================= QUOTE BANNER ================= */
         .quote-banner {
             background: linear-gradient(135deg, var(--primary-dark) 0%, #1a0f0a 100%);
             color: #ffffff;
             padding: 90px 8%;
             text-align: center;
-            position: relative;
         }
 
         .quote-text {
@@ -388,150 +359,100 @@
             text-transform: uppercase;
         }
 
-        /* ================= FOOTER ================= */
         footer {
             background-color: #1a0f0a;
             color: #a89f91;
             padding: 60px 8% 30px 8%;
             text-align: center;
             font-size: 0.85rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .footer-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-
-        .footer-links {
-            margin: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-links a {
-            color: #a89f91;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold-accent);
-        }
-
-        /* Responsive UI */
         @media (max-width: 768px) {
             header { padding: 15px 5%; }
-            nav { display: none; } /* Simplified for responsive showcase */
+            nav { display: none; }
             .hero-title { font-size: 2.1rem; }
-            .intro-title { font-size: 1.7rem; }
-            .quote-text { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================= INTRO ANIMATION OVERLAY ================= -->
+    <!-- OVERLAY DE BIENVENIDA -->
     <div id="intro-overlay">
         <div class="intro-content">
             <div class="intro-logo-box">
-                <img src="https://ibb.co/vvKmQXzX" alt="Café con Fe Logo" class="intro-logo" id="intro-logo-img" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150&auto=format&fit=crop&q=80';">
+                <img src="https://i.ibb.co/vvKmQXzX/logo.png" alt="Café con Fe Logo" class="intro-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/924/924514.png';">
             </div>
             <h1 class="intro-title">Café con Fe</h1>
             <p class="intro-subtitle">Bienvenido a Café con Fe,<br>un espacio para acercarte a Dios</p>
         </div>
     </div>
 
-    <!-- ================= HEADER / NAVIGATION ================= -->
+    <!-- HEADER / BARRA SUPERIOR -->
     <header>
         <a href="#" class="brand-container">
-            <img src="https://ibb.co/vvKmQXzX" alt="Café con Fe Logo" class="header-logo" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150&auto=format&fit=crop&q=80';">
+            <img src="https://i.ibb.co/vvKmQXzX/logo.png" alt="Café con Fe Logo" class="header-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/924/924514.png';">
             <span class="brand-name">Café con Fe</span>
         </a>
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
-        <!-- HERO SECTION -->
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <span class="hero-tagline">Un Rincón de Paz & Conexión</span>
                 <h1 class="hero-title">Bienvenidos a tu espacio<br>para buscar a Dios</h1>
                 <p class="hero-description">
-                    Disfruta de una taza de café recién preparado mientras nutres tu espíritu, encuentras serenidad y compartes la fe en una comunidad cálida y acogedora.
+                    Disfruta de una taza de café recién preparado mientras nutres tu espíritu, encuentras serenidad y compartes la fe en una comunidad cálida.
                 </p>
-                <a href="#experiencia" class="cta-button">EXPLORAR ESPACIO</a>
+                <a href="#nosotros" class="cta-button">EXPLORAR ESPACIO</a>
             </div>
         </section>
 
-        <!-- CARDS SECTION -->
         <section id="nosotros" class="section">
-            <div class="section-header">
-                <span class="section-subtitle">Nuestra Esencia</span>
-                <h2 class="section-title">Lo que encontrarás aquí</h2>
-            </div>
+            <h2 class="section-title">Lo que encontrarás aquí</h2>
             <div class="grid-3">
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div>
                     <h3 class="card-title">Café Artesanal</h3>
-                    <p class="card-desc">Granos seleccionados con esmero para acompañar tus momentos de reflexión, oración y buena conversación.</p>
+                    <p class="card-desc">Granos seleccionados para acompañar tus momentos de reflexión y oración.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-book-bible"></i></div>
                     <h3 class="card-title">Palabra & Devoción</h3>
-                    <p class="card-desc">Un ambiente diseñado para meditar en la Palabra de Dios, leer y renovar tus fuerzas espirituales.</p>
+                    <p class="card-desc">Un ambiente suave y tranquilo diseñado para meditar en la Palabra de Dios.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-hands-holding-heart"></i></div>
-                    <h3 class="card-title">Comunidad & Fe</h3>
-                    <p class="card-desc">Un lugar de encuentro mutuo, donde se comparten testimonios, apoyo sincero y fraternidad.</p>
+                    <h3 class="card-title">Comunidad</h3>
+                    <p class="card-desc">Un lugar de encuentro y hermandad donde se comparte la fe con sinceridad.</p>
                 </div>
             </div>
         </section>
 
-        <!-- QUOTE BANNER -->
         <section class="quote-banner">
             <p class="quote-text">"Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar."</p>
             <p class="quote-author">Mateo 11:28</p>
         </section>
     </main>
 
-    <!-- ================= FOOTER ================= -->
     <footer id="contacto">
-        <img src="https://ibb.co/vvKmQXzX" alt="Café con Fe Logo" class="footer-logo" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150&auto=format&fit=crop&q=80';">
         <p>&copy; 2026 Café con Fe. Todos los derechos reservados.</p>
-        <p style="margin-top: 5px; color: #7a6e65;">Un espacio dedicado a buscar la presencia de Dios.</p>
-        <div class="footer-links">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
-        </div>
     </footer>
 
-    <!-- ================= ANIMATION SCRIPT ================= -->
+    <!-- JS DE CONTROL DE LA ANIMACIÓN DE BIENVENIDA -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Intro animation timing sequence:
-            // 1. Show welcome message and centered logo.
-            // 2. Wait 2.8 seconds.
-            // 3. Fade out overlay and animate logo into top header position.
-            // 4. Reveal main landing page header and "Bienvenidos a tu espacio para buscar a Dios".
-            
+        // Transición automática al cargar la página
+        window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.add('intro-complete');
-            }, 2800);
+            }, 2500);
         });
     </script>
 </body>
