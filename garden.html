@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promise Garden | Café con Fe</title>
+    <title>Promise Garden & Kids | Café con Fe</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/vvKmQXzX/logo.png">
@@ -11,7 +11,7 @@
     <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,21 +20,57 @@
         :root {
             --bg-color: #fcfbf7;
             --card-bg: #ffffff;
-            --primary-dark: #1b2e1b; /* Verde bosque profundo para temática jardín */
+            --primary-dark: #1b2e1b;
             --garden-green: #3a5a40;
             --soft-green: #a3b18a;
             --coffee-accent: #8c6239;
             --gold-accent: #d4af37;
+            --kids-bg: #f2f9f1;
+            --kids-accent: #f4a261;
             --text-main: #2b2d42;
             --text-muted: #586069;
             --border-color: #e2e8f0;
             --shadow-soft: 0 10px 30px rgba(58, 90, 64, 0.08);
-            --shadow-hover: 0 18px 40px rgba(58, 90, 64, 0.18);
+            --shadow-hover: 0 20px 40px rgba(58, 90, 64, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; position: relative; }
+
+        /* ANIMACIONES GLOBALES */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(58, 90, 64, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(58, 90, 64, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(58, 90, 64, 0); }
+        }
+
+        .scroll-anim { opacity: 0; }
+        .scroll-anim.visible { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+
+        /* HOJAS FLOTANTES DE FONDO */
+        .bg-leaves {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: -1; overflow: hidden; opacity: 0.15;
+        }
+        .bg-leaf { position: absolute; color: var(--garden-green); font-size: 2rem; animation: float 6s ease-in-out infinite; }
+        .bg-leaf:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; font-size: 2.5rem; }
+        .bg-leaf:nth-child(2) { top: 60%; left: 85%; animation-delay: 2s; font-size: 1.8rem; }
+        .bg-leaf:nth-child(3) { top: 80%; left: 15%; animation-delay: 4s; font-size: 3rem; }
+        .bg-leaf:nth-child(4) { top: 25%; left: 75%; animation-delay: 1.5s; font-size: 2.2rem; }
 
         /* OVERLAY ANIMADO DE ENTRADA */
         #intro-overlay {
@@ -43,7 +79,7 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             transition: opacity 0.6s ease, visibility 0.6s;
         }
-        .garden-icon-intro { font-size: 3.5rem; color: var(--garden-green); margin-bottom: 15px; }
+        .garden-icon-intro { font-size: 3.5rem; color: var(--garden-green); margin-bottom: 15px; animation: bounceSoft 2s infinite ease-in-out; }
         .typewriter-title { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary-dark); font-weight: 700; }
         .intro-complete #intro-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
 
@@ -55,12 +91,15 @@
             border-bottom: 1px solid var(--border-color);
         }
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-container i { font-size: 1.6rem; color: var(--coffee-accent); }
+        .brand-container i { font-size: 1.6rem; color: var(--coffee-accent); transition: transform 0.3s; }
+        .brand-container:hover i { transform: rotate(15deg) scale(1.1); }
         .brand-name { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 700; color: var(--primary-dark); }
         .menu-toggle-btn {
             background: var(--primary-dark); color: #fff; border: none; padding: 10px 20px;
             border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600;
+            transition: 0.3s;
         }
+        .menu-toggle-btn:hover { background: var(--garden-green); transform: scale(1.05); }
 
         /* DRAWER LATERAL */
         .side-drawer-overlay {
@@ -70,78 +109,143 @@
         .side-drawer-overlay.active { opacity: 1; visibility: visible; }
         .side-drawer {
             position: fixed; top: 0; right: -340px; width: 320px; height: 100vh;
-            background: var(--bg-color); z-index: 2001; padding: 30px 20px; transition: right 0.3s ease;
+            background: var(--bg-color); z-index: 2001; padding: 30px 20px; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .side-drawer.active { right: 0; }
         .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .drawer-link { text-decoration: none; color: var(--text-main); padding: 10px; display: block; border-radius: 8px; background: rgba(58, 90, 64, 0.05); }
+        .drawer-link {
+            text-decoration: none; color: var(--text-main); padding: 12px; display: block; 
+            border-radius: 8px; background: rgba(58, 90, 64, 0.05); transition: 0.3s; font-weight: 500;
+        }
+        .drawer-link:hover { background: var(--garden-green); color: #fff; padding-left: 20px; }
 
         /* HERO GARDEN */
         .hero-section {
             margin-top: 80px; padding: 60px 6% 40px 6%; text-align: center;
             background: linear-gradient(180deg, rgba(163, 177, 138, 0.15) 0%, rgba(252, 251, 247, 0) 100%);
         }
-        .hero-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px; }
-        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--garden-green); font-style: italic; max-width: 650px; margin: 0 auto; }
+        .hero-title { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--primary-dark); margin-bottom: 10px; }
+        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--garden-green); font-style: italic; max-width: 650px; margin: 0 auto; }
 
         /* FORMULARIO DE SEMBRAR PROMESA */
         .plant-section { max-width: 800px; margin: 30px auto; padding: 0 6%; }
         .plant-card {
-            background: var(--card-bg); border-radius: 20px; padding: 30px;
+            background: var(--card-bg); border-radius: 20px; padding: 35px;
             box-shadow: var(--shadow-soft); border: 1px solid var(--border-color);
+            transition: transform 0.3s;
         }
-        .plant-card h3 { font-family: 'Cinzel', serif; color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
+        .plant-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .plant-card h3 { font-family: 'Cinzel', serif; color: var(--primary-dark); margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
         .form-control {
-            width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border-color);
-            font-family: inherit; font-size: 0.9rem; outline: none; transition: 0.3s;
+            width: 100%; padding: 14px 15px; border-radius: 12px; border: 1px solid var(--border-color);
+            font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.3s;
+            background: rgba(163, 177, 138, 0.05);
         }
-        .form-control:focus { border-color: var(--garden-green); }
-        textarea.form-control { resize: vertical; min-height: 90px; }
+        .form-control:focus { border-color: var(--garden-green); background: #fff; box-shadow: 0 0 0 4px rgba(163, 177, 138, 0.2); }
+        textarea.form-control { resize: vertical; min-height: 100px; }
         
         .plant-btn {
-            background: var(--garden-green); color: #fff; border: none; padding: 12px 25px;
+            background: var(--garden-green); color: #fff; border: none; padding: 14px 25px;
             border-radius: 25px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%;
-            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.95rem;
+            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 1rem;
         }
-        .plant-btn:hover { background: var(--primary-dark); box-shadow: var(--shadow-hover); }
+        .plant-btn:hover { background: var(--primary-dark); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+        .plant-btn:active { transform: translateY(0); }
+
+        /* =========================================
+           NUEVO: SECCIÓN GARDEN KIDS
+           ========================================= */
+        .kids-section {
+            max-width: 1100px; margin: 60px auto 40px auto; padding: 40px 6%;
+            background: var(--kids-bg); border-radius: 30px; position: relative;
+            border: 2px dashed #d5e5d3; text-align: center; overflow: hidden;
+        }
+        .kids-decoration { position: absolute; opacity: 0.6; animation: float 4s infinite ease-in-out; }
+        .kd-1 { top: 20px; left: 20px; color: #f4a261; font-size: 2.5rem; }
+        .kd-2 { bottom: 30px; right: 30px; color: #e9c46a; font-size: 3rem; animation-delay: 1s; }
+        .kd-3 { top: 40px; right: 50px; color: #2a9d8f; font-size: 2rem; animation-delay: 2s; }
+
+        .kids-header h2 {
+            font-family: 'Quicksand', sans-serif; font-size: 2.5rem; font-weight: 700;
+            color: #264653; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 15px;
+        }
+        .kids-header i { color: #e9c46a; animation: bounceSoft 2.5s infinite; }
+        .kids-header p { font-family: 'Quicksand', sans-serif; font-size: 1.1rem; color: #555; margin-bottom: 30px; font-weight: 500; }
+
+        .kids-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; position: relative; z-index: 2; }
+        .kid-card {
+            background: #fff; padding: 25px 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border-bottom: 4px solid transparent;
+        }
+        .kid-card:hover { transform: translateY(-10px) scale(1.02); }
+        .kid-card:nth-child(1):hover { border-bottom-color: #f4a261; }
+        .kid-card:nth-child(2):hover { border-bottom-color: #2a9d8f; }
+        .kid-card:nth-child(3):hover { border-bottom-color: #e9c46a; }
+
+        .kid-icon-wrapper {
+            width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            margin: 0 auto 15px auto; font-size: 1.8rem; transition: transform 0.3s;
+        }
+        .kid-card:hover .kid-icon-wrapper { transform: rotate(15deg) scale(1.1); }
+        .bg-orange { background: #fff0e3; color: #f4a261; }
+        .bg-teal { background: #e0f4f1; color: #2a9d8f; }
+        .bg-yellow { background: #fdf5df; color: #e9c46a; }
+        
+        .kid-card h4 { font-family: 'Quicksand', sans-serif; font-size: 1.3rem; color: #264653; margin-bottom: 8px; }
+        .kid-card p { font-size: 0.9rem; color: #666; line-height: 1.4; }
 
         /* JARDÍN MURAL (GRIDA DE PROMESAS) */
-        .garden-wall { max-width: 1250px; margin: 40px auto 80px auto; padding: 0 6%; }
-        .section-header { text-align: center; margin-bottom: 30px; }
-        .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-dark); }
+        .garden-wall { max-width: 1250px; margin: 60px auto 80px auto; padding: 0 6%; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary-dark); }
         
-        .garden-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .garden-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 30px; }
         
         .promise-card {
-            background: var(--card-bg); border-radius: 16px; padding: 25px;
-            border-top: 4px solid var(--garden-green); box-shadow: var(--shadow-soft);
+            background: var(--card-bg); border-radius: 16px; padding: 30px;
+            border-top: 5px solid var(--garden-green); box-shadow: var(--shadow-soft);
             display: flex; flex-direction: column; justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden;
         }
-        .promise-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .promise-card::before {
+            content: "\f06c"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; right: -15px; bottom: -20px; font-size: 6rem; color: rgba(163, 177, 138, 0.08);
+            transform: rotate(-15deg); transition: 0.4s;
+        }
+        .promise-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .promise-card:hover::before { transform: rotate(0deg) scale(1.1); color: rgba(163, 177, 138, 0.15); }
         
         .promise-category {
-            font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--garden-green); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--garden-green); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
         }
-        .promise-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--text-main); line-height: 1.5; margin-bottom: 15px; font-style: italic; }
-        .promise-author { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-align: right; }
+        .promise-text { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; font-style: italic; position: relative; z-index: 1; }
+        .promise-author { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-align: right; position: relative; z-index: 1; }
         
         .amen-btn {
             background: rgba(163, 177, 138, 0.15); border: none; color: var(--garden-green);
-            padding: 6px 12px; border-radius: 15px; font-size: 0.78rem; font-weight: 600;
-            cursor: pointer; transition: 0.3s; margin-top: 15px; align-self: flex-start;
-            display: flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s; margin-top: 20px; align-self: flex-start;
+            display: flex; align-items: center; gap: 6px; position: relative; z-index: 1;
         }
         .amen-btn:hover { background: var(--garden-green); color: #fff; }
+        .amen-btn.clicked { animation: pulseGlow 1s forwards; background: var(--garden-green); color: #fff; }
 
-        footer { background: #111e11; color: #a3b18a; padding: 25px; text-align: center; font-size: 0.85rem; }
+        footer { background: #111e11; color: #a3b18a; padding: 30px; text-align: center; font-size: 0.9rem; margin-top: 50px; }
     </style>
 </head>
 <body>
+
+    <!-- ANIMACIÓN DE HOJAS DE FONDO -->
+    <div class="bg-leaves">
+        <i class="fa-solid fa-leaf bg-leaf"></i>
+        <i class="fa-solid fa-seedling bg-leaf"></i>
+        <i class="fa-solid fa-leaf bg-leaf"></i>
+        <i class="fa-brands fa-envira bg-leaf"></i>
+    </div>
 
     <!-- OVERLAY ANIMADO -->
     <div id="intro-overlay">
@@ -162,35 +266,35 @@
     <div class="side-drawer-overlay" id="drawerOverlay"></div>
     <aside class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
-            <h3>Navegación</h3>
-            <button id="closeDrawerBtn" style="background:none; border:none; font-size:1.2rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="font-family: 'Cinzel', serif; color: var(--primary-dark);">Navegación</h3>
+            <button id="closeDrawerBtn" style="background:none; border:none; font-size:1.4rem; color: var(--text-muted); cursor:pointer; transition:0.3s;"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <ul class="drawer-menu">
-            <li><a href="index.html" class="drawer-link">Inicio</a></li>
-            <li><a href="literatura.html" class="drawer-link">Galería Literaria</a></li>
-            <li><a href="Olivo.html" class="drawer-link">Salón Olivo</a></li>
-            <li><a href="garden.html" class="drawer-link">Promise Garden</a></li>
+            <li><a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="literatura.html" class="drawer-link"><i class="fa-solid fa-book-open"></i> Galería Literaria</a></li>
+            <li><a href="Olivo.html" class="drawer-link"><i class="fa-solid fa-leaf"></i> Salón Olivo</a></li>
+            <li><a href="garden.html" class="drawer-link"><i class="fa-solid fa-seedling"></i> Promise Garden</a></li>
         </ul>
     </aside>
 
     <main>
         <!-- HERO -->
-        <section class="hero-section">
+        <section class="hero-section scroll-anim">
             <h1 class="hero-title">Jardín de las Promesas</h1>
             <p class="hero-subtitle">"Un espacio sagrado para sembrar reflexiones, compartir oraciones y hacer florecer nuestra esperanza comunitaria."</p>
         </section>
 
         <!-- FORMULARIO PARA SEMBRAR -->
-        <section class="plant-section">
+        <section class="plant-section scroll-anim">
             <div class="plant-card">
-                <h3><i class="fa-solid fa-leaf" style="color:var(--garden-green);"></i> Sembrar una Promesa u Oración</h3>
+                <h3><i class="fa-solid fa-hand-holding-heart" style="color:var(--garden-green); animation: bounceSoft 3s infinite;"></i> Sembrar una Promesa</h3>
                 <form id="promiseForm">
                     <div class="form-group">
                         <label for="authorName">Tu Nombre o Seudónimo:</label>
-                        <input type="text" id="authorName" class="form-control" placeholder="Ej. Hermano Mateo (o déjalo Anónimo)" required>
+                        <input type="text" id="authorName" class="form-control" placeholder="Ej. Familia Martínez (o Anónimo)" required>
                     </div>
                     <div class="form-group">
-                        <label for="categorySelect">Categoría:</label>
+                        <label for="categorySelect">Semilla (Categoría):</label>
                         <select id="categorySelect" class="form-control">
                             <option value="Gratitud">Gratitud & Alabanza</option>
                             <option value="Petición">Petición & Oración</option>
@@ -199,7 +303,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="promiseContent">Tu Mensaje o Promesa:</label>
+                        <label for="promiseContent">Tu Mensaje u Oración:</label>
                         <textarea id="promiseContent" class="form-control" placeholder="Escribe aquí lo que Dios ha puesto en tu corazón..." required></textarea>
                     </div>
                     <button type="submit" class="plant-btn">
@@ -209,10 +313,46 @@
             </div>
         </section>
 
+        <!-- NUEVA SECCIÓN: GARDEN KIDS -->
+        <section class="kids-section scroll-anim" id="gardenKids">
+            <i class="fa-solid fa-sun kids-decoration kd-1"></i>
+            <i class="fa-solid fa-butterfly kids-decoration kd-2"></i>
+            <i class="fa-solid fa-dove kids-decoration kd-3"></i>
+            
+            <div class="kids-header">
+                <h2><i class="fa-solid fa-sun"></i> Garden Kids</h2>
+                <p>Un rincón lleno de color para que los más pequeños cultiven su fe jugando y aprendiendo.</p>
+            </div>
+
+            <div class="kids-grid">
+                <div class="kid-card" onclick="alert('Abriendo cuentos interactivos...')">
+                    <div class="kid-icon-wrapper bg-orange">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h4>Historias de Fe</h4>
+                    <p>Cuentos bíblicos ilustrados y narrados para sembrar valores eternos.</p>
+                </div>
+                <div class="kid-card" onclick="alert('Descargando PDF para colorear...')">
+                    <div class="kid-icon-wrapper bg-teal">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h4>Pinta y Crea</h4>
+                    <p>Descarga dibujos de los héroes de la fe y versículos para colorear en casa o en la cafetería.</p>
+                </div>
+                <div class="kid-card" onclick="alert('Reproduciendo alabanzas infantiles...')">
+                    <div class="kid-icon-wrapper bg-yellow">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <h4>Cantos del Jardín</h4>
+                    <p>Música y alabanzas divertidas con coreografías para alabar a Dios con alegría.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- MURO DEL JARDÍN -->
-        <section class="garden-wall">
+        <section class="garden-wall scroll-anim">
             <div class="section-header">
-                <h2>Flores de la Comunidad</h2>
+                <h2><i class="fa-brands fa-pagelines" style="color:var(--garden-green);"></i> Flores de la Comunidad</h2>
             </div>
             <div class="garden-grid" id="gardenGrid">
                 <!-- Se genera automáticamente con JS -->
@@ -221,11 +361,20 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Café con Fe - Promise Garden. Todos los derechos reservados.</p>
+        <p><i class="fa-solid fa-leaf"></i> &copy; 2026 Café con Fe - Promise Garden & Kids. Cultivando esperanza.</p>
     </footer>
 
     <!-- LÓGICA JAVASCRIPT -->
     <script>
+        // INTERSECTION OBSERVER PARA ANIMACIONES AL HACER SCROLL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
         // PROMESAS INICIALES DE EJEMPLO
         const initialPromises = [
             {
@@ -244,49 +393,57 @@
             },
             {
                 id: 3,
-                author: "Anónimo",
+                author: "Familia Torres",
                 category: "Petición",
-                content: "Pido oración por la salud y restauración de las familias de nuestra comunidad.",
+                content: "Pido oración por la salud, restauración y unidad de las familias de nuestra comunidad.",
                 amens: 18
             },
             {
                 id: 4,
                 author: "Sofía M.",
                 category: "Reflexión",
-                content: "Un café con fe por la mañana me recuerda que cada día es una nueva oportunidad para empezar de cero.",
+                content: "Un café con fe por la mañana me recuerda que cada día es una nueva misericordia y una oportunidad para empezar de cero.",
                 amens: 9
             }
         ];
 
-        // RENDERIZAR PROMESAS EN EL JARDÍN
+        // RENDERIZAR PROMESAS CON EFECTO DE CASCADA (STAGGER)
         function renderGarden(promises) {
             const grid = document.getElementById('gardenGrid');
             grid.innerHTML = '';
 
-            promises.forEach(item => {
+            promises.forEach((item, index) => {
                 const card = document.createElement('article');
-                card.className = 'promise-card';
+                card.className = 'promise-card scroll-anim';
+                // Añadir un pequeño retraso basado en el índice para efecto cascada
+                card.style.animationDelay = \`\${index * 0.1}s\`; 
+                
                 card.innerHTML = `
                     <div>
                         <div class="promise-category">
-                            <i class="fa-solid fa-spa"></i> ${item.category}
+                            <i class="fa-solid fa-spa"></i> \${item.category}
                         </div>
-                        <p class="promise-text">"${item.content}"</p>
+                        <p class="promise-text">"\${item.content}"</p>
                     </div>
                     <div>
-                        <p class="promise-author">— ${item.author}</p>
-                        <button class="amen-btn" onclick="addAmen(${item.id}, this)">
-                            <i class="fa-solid fa-hands-praying"></i> Amén (${item.amens})
+                        <p class="promise-author">— \${item.author}</p>
+                        <button class="amen-btn" onclick="addAmen(\${item.id}, this)">
+                            <i class="fa-solid fa-hands-praying"></i> Amén (\${item.amens})
                         </button>
                     </div>
                 `;
                 grid.appendChild(card);
+                observer.observe(card); // Observar cada tarjeta nueva
             });
         }
 
         // CARGA INICIAL
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => document.body.classList.add('intro-complete'), 1800);
+            setTimeout(() => {
+                document.body.classList.add('intro-complete');
+                // Observar secciones principales
+                document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
+            }, 1800);
             renderGarden(initialPromises);
         });
 
@@ -300,36 +457,57 @@
         closeDrawerBtn.addEventListener('click', () => { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); });
         drawerOverlay.addEventListener('click', () => { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); });
 
-        // AGREGAR NUEVA PROMESA/ORACIÓN
+        // AGREGAR NUEVA PROMESA/ORACIÓN CON ANIMACIÓN DE ÉXITO
         const promiseForm = document.getElementById('promiseForm');
+        const plantBtn = document.querySelector('.plant-btn');
+
         promiseForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const author = document.getElementById('authorName').value || "Anónimo";
-            const category = document.getElementById('categorySelect').value;
-            const content = document.getElementById('promiseContent').value;
+            // Animación temporal del botón
+            const originalText = plantBtn.innerHTML;
+            plantBtn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Semilla Plantada!';
+            plantBtn.style.background = '#2a9d8f';
+            
+            setTimeout(() => {
+                const author = document.getElementById('authorName').value || "Anónimo";
+                const category = document.getElementById('categorySelect').value;
+                const content = document.getElementById('promiseContent').value;
 
-            const newPromise = {
-                id: Date.now(),
-                author: author,
-                category: category,
-                content: content,
-                amens: 1
-            };
+                const newPromise = {
+                    id: Date.now(),
+                    author: author,
+                    category: category,
+                    content: content,
+                    amens: 1
+                };
 
-            initialPromises.unshift(newPromise);
-            renderGarden(initialPromises);
-            promiseForm.reset();
-
-            alert("¡Tu semilla ha sido sembrada en el Jardín de las Promesas!");
+                initialPromises.unshift(newPromise);
+                renderGarden(initialPromises);
+                promiseForm.reset();
+                
+                // Restaurar botón
+                plantBtn.innerHTML = originalText;
+                plantBtn.style.background = '';
+                
+                // Hacer scroll suave hacia las promesas
+                document.querySelector('.garden-wall').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
         });
 
-        // INCREMENTAR CONTADOR DE AMÉN
+        // INCREMENTAR CONTADOR DE AMÉN CON EFECTO GLOW
         function addAmen(id, btnElement) {
             const item = initialPromises.find(p => p.id === id);
-            if (item) {
+            if (item && !btnElement.classList.contains('clicked')) {
                 item.amens += 1;
-                btnElement.innerHTML = `<i class="fa-solid fa-hands-praying"></i> Amén (${item.amens})`;
+                btnElement.innerHTML = `<i class="fa-solid fa-hands-praying"></i> Amén (\${item.amens})`;
+                btnElement.classList.add('clicked');
+                
+                // Remover clase después de la animación para permitir que el estilo final se mantenga
+                setTimeout(() => {
+                    btnElement.style.background = "var(--garden-green)";
+                    btnElement.style.color = "#fff";
+                }, 1000);
             }
         }
     </script>
