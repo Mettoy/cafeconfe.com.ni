@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,9 +20,8 @@
             --primary-dark: #2c1a11;
             --coffee-accent: #8c6239;
             --gold-accent: #d4af37;
-            --gold-hover: #b89528;
             --text-main: #3a322d;
-            --text-muted: #7a6e65;
+            --text-muted: #6e645d;
             --border-color: #f0e6df;
             --shadow-soft: 0 10px 30px rgba(44, 26, 17, 0.08);
             --shadow-hover: 0 18px 40px rgba(140, 98, 57, 0.22);
@@ -187,7 +186,6 @@
             align-items: center;
         }
 
-        /* ESTILO SUPER ANIMADO PARA BOTONES PRINCIPALES */
         .btn-nav {
             position: relative;
             text-decoration: none;
@@ -241,11 +239,7 @@
             left: 0;
         }
 
-        .btn-nav:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
-        /* BOTÓN MENÚ PLEGABLE (HAMBURGUESA) */
+        /* Botón Menú Plegable */
         .menu-toggle-btn {
             background: var(--primary-dark);
             color: #ffffff;
@@ -368,8 +362,6 @@
             gap: 12px;
             background: transparent;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .drawer-link i {
@@ -389,20 +381,24 @@
             color: var(--gold-accent);
         }
 
-        /* ================= SECCIÓN HERO ================= */
+        /* ================= SECCIÓN HERO (PORTADA CON FOTO DE FONDO) ================= */
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 60px 20px;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.12) 0%, rgba(253,251,247,1) 70%);
+            padding: 120px 20px 60px 20px;
+            /* IMAGEN DE FONDO SOLICITADA */
+            background: linear-gradient(180deg, rgba(28, 17, 11, 0.65) 0%, rgba(28, 17, 11, 0.8) 100%), 
+                        url('https://i.ibb.co/27mHzGc0/bg-hero.jpg') center/cover no-repeat fixed;
+            color: #ffffff;
+            position: relative;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
@@ -417,15 +413,15 @@
             display: inline-block;
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold-accent);
+            letter-spacing: 4px;
+            color: #f7e7ce;
             font-weight: 600;
-            margin-bottom: 20px;
-            padding: 8px 20px;
-            border: 1px solid rgba(212, 175, 55, 0.4);
+            margin-bottom: 25px;
+            padding: 8px 24px;
+            border: 1px solid rgba(247, 231, 206, 0.4);
             border-radius: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
             animation: floatTag 3s infinite ease-in-out alternate;
         }
 
@@ -436,27 +432,29 @@
 
         .hero-title {
             font-family: 'Cinzel', serif;
-            font-size: 3.2rem;
-            line-height: 1.25;
-            color: var(--primary-dark);
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 25px;
             font-weight: 700;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 35px;
-            font-weight: 300;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #e6dfd5;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+            font-style: italic;
         }
 
-        /* Botón CTA Animado */
         .cta-button {
             display: inline-block;
             position: relative;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #42281a 100%);
+            padding: 16px 42px;
+            background: linear-gradient(135deg, #8c6239 0%, #d4af37 100%);
             color: #ffffff;
             text-decoration: none;
             border-radius: 30px;
@@ -465,7 +463,7 @@
             font-weight: 600;
             overflow: hidden;
             transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(44, 26, 17, 0.25);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .cta-button::after {
@@ -475,18 +473,116 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.6s ease;
         }
 
         .cta-button:hover {
-            background: linear-gradient(135deg, var(--coffee-accent) 0%, var(--gold-accent) 100%);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 14px 30px rgba(140, 98, 57, 0.35);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
         }
 
         .cta-button:hover::after {
             left: 100%;
+        }
+
+        /* ================= SECCIÓN BIENVENIDOS (IZQUIERDA TEXTO, DERECHA FOTO) ================= */
+        .welcome-section {
+            padding: 110px 8%;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .welcome-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .welcome-text-container {
+            padding-right: 10px;
+        }
+
+        .welcome-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--coffee-accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .welcome-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            color: var(--primary-dark);
+            line-height: 1.25;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* TIPOGRAFÍA ELEGANTE PARA EL MENSAJE (Cormorant Garamond) */
+        .welcome-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 25px;
+        }
+
+        .welcome-highlight {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--coffee-accent);
+            border-left: 3px solid var(--gold-accent);
+            padding-left: 18px;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .welcome-image-container {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .welcome-img {
+            width: 100%;
+            max-width: 520px;
+            height: 520px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .welcome-image-container:hover .welcome-img {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        /* Marco decorativo dorado detrás de la imagen */
+        .welcome-image-container::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 80%;
+            height: 80%;
+            border: 2px solid var(--gold-accent);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+
+        .welcome-image-container:hover::before {
+            bottom: -12px;
+            right: -12px;
+            opacity: 0.9;
         }
 
         /* ================= MENÚ DE ESPECIALIDADES ================= */
@@ -502,7 +598,6 @@
             color: var(--primary-dark);
             text-align: center;
             margin-bottom: 50px;
-            position: relative;
         }
 
         .section-title::after {
@@ -626,9 +721,23 @@
         }
 
         /* Responsive UI */
+        @media (max-width: 992px) {
+            .welcome-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .welcome-image-container {
+                justify-content: center;
+            }
+            .welcome-img {
+                height: 400px;
+            }
+        }
+
         @media (max-width: 900px) {
             nav.main-nav { display: none; }
-            .hero-title { font-size: 2.3rem; }
+            .hero-title { font-size: 2.5rem; }
+            .welcome-title { font-size: 2rem; }
             .typewriter-title { font-size: 1.8rem; }
             .coffee-cup-icon { font-size: 2.8rem; }
         }
@@ -707,16 +816,46 @@
         </ul>
     </aside>
 
-    <!-- SECCIÓN PRINCIPAL HERO -->
+    <!-- SECCIÓN PRINCIPAL HERO (CON FOTO DE FONDO AL ENTRAR) -->
     <main>
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <span class="hero-tagline">Cafetería de Especialidad</span>
-                <h1 class="hero-title">Un espacio para pausar,<br>disfrutar y reconectar</h1>
+                <h1 class="hero-title">El Refugio Perfecto para tu Alma</h1>
                 <p class="hero-description">
-                    Granos seleccionados a mano, tostado artesanal y repostería fresca todos los días. Ven y disfruta de la taza de café perfecta en el mejor ambiente.
+                    "Donde el aroma del tostado fresco se combina con la serenidad de una buena conversación."
                 </p>
-                <a href="#menu" class="cta-button">EXPLORAR MENÚ</a>
+                <a href="#bienvenidos" class="cta-button">CONOCE MÁS</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN BIENVENIDOS (INFORMACIÓN A LA IZQUIERDA, FOTO A LA DERECHA) -->
+        <section id="bienvenidos" class="welcome-section">
+            <div class="welcome-container">
+                
+                <!-- INFORMACIÓN A LA IZQUIERDA -->
+                <div class="welcome-text-container">
+                    <span class="welcome-subtitle">Nuestra Casa</span>
+                    <h2 class="welcome-title">Bienvenidos a Café con Fe</h2>
+                    
+                    <p class="welcome-description">
+                        Hay lugares creados para pasar de prisa, y hay otros concebidos para detener el tiempo. Café con Fe nace como un santuario urbano donde la prisa se disuelve al cruzar la puerta.
+                    </p>
+                    
+                    <p class="welcome-description">
+                        Aquí cada taza es preparada con paciencia y devoción, utilizando granos seleccionados con cuidado. Es un espacio diseñado para inspirar, donde el diálogo fluye sin prisas, los pensamientos encuentran calma y las personas hallan un verdadero tiempo de paz y reconexión.
+                    </p>
+
+                    <p class="welcome-highlight">
+                        "Un rincón cálido para nutrir el espíritu, disfrutar de la literatura y saborear la armonía en cada detalle."
+                    </p>
+                </div>
+
+                <!-- FOTO A LA DERECHA -->
+                <div class="welcome-image-container">
+                    <img src="https://i.ibb.co/XZVSSk1W/cafe-espacio.jpg" alt="Espacio acogedor en Café con Fe" class="welcome-img">
+                </div>
+
             </div>
         </section>
 
