@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Garden | Café con Fe</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/vvKmQXzX/logo.png">
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #fcfbf7;
+            --card-bg: #ffffff;
+            --primary-dark: #1b2e1b; /* Verde bosque profundo para temática jardín */
+            --garden-green: #3a5a40;
+            --soft-green: #a3b18a;
+            --coffee-accent: #8c6239;
+            --gold-accent: #d4af37;
+            --text-main: #2b2d42;
+            --text-muted: #586069;
+            --border-color: #e2e8f0;
+            --shadow-soft: 0 10px 30px rgba(58, 90, 64, 0.08);
+            --shadow-hover: 0 18px 40px rgba(58, 90, 64, 0.18);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+
+        /* OVERLAY ANIMADO DE ENTRADA */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-color); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        .garden-icon-intro { font-size: 3.5rem; color: var(--garden-green); margin-bottom: 15px; }
+        .typewriter-title { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary-dark); font-weight: 700; }
+        .intro-complete #intro-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 16px 6%;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            background: rgba(252, 251, 247, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-container i { font-size: 1.6rem; color: var(--coffee-accent); }
+        .brand-name { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 700; color: var(--primary-dark); }
+        .menu-toggle-btn {
+            background: var(--primary-dark); color: #fff; border: none; padding: 10px 20px;
+            border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600;
+        }
+
+        /* DRAWER LATERAL */
+        .side-drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(27, 46, 27, 0.5); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .side-drawer-overlay.active { opacity: 1; visibility: visible; }
+        .side-drawer {
+            position: fixed; top: 0; right: -340px; width: 320px; height: 100vh;
+            background: var(--bg-color); z-index: 2001; padding: 30px 20px; transition: right 0.3s ease;
+        }
+        .side-drawer.active { right: 0; }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .drawer-link { text-decoration: none; color: var(--text-main); padding: 10px; display: block; border-radius: 8px; background: rgba(58, 90, 64, 0.05); }
+
+        /* HERO GARDEN */
+        .hero-section {
+            margin-top: 80px; padding: 60px 6% 40px 6%; text-align: center;
+            background: linear-gradient(180deg, rgba(163, 177, 138, 0.15) 0%, rgba(252, 251, 247, 0) 100%);
+        }
+        .hero-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px; }
+        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--garden-green); font-style: italic; max-width: 650px; margin: 0 auto; }
+
+        /* FORMULARIO DE SEMBRAR PROMESA */
+        .plant-section { max-width: 800px; margin: 30px auto; padding: 0 6%; }
+        .plant-card {
+            background: var(--card-bg); border-radius: 20px; padding: 30px;
+            box-shadow: var(--shadow-soft); border: 1px solid var(--border-color);
+        }
+        .plant-card h3 { font-family: 'Cinzel', serif; color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
+        .form-control {
+            width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border-color);
+            font-family: inherit; font-size: 0.9rem; outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--garden-green); }
+        textarea.form-control { resize: vertical; min-height: 90px; }
+        
+        .plant-btn {
+            background: var(--garden-green); color: #fff; border: none; padding: 12px 25px;
+            border-radius: 25px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%;
+            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.95rem;
+        }
+        .plant-btn:hover { background: var(--primary-dark); box-shadow: var(--shadow-hover); }
+
+        /* JARDÍN MURAL (GRIDA DE PROMESAS) */
+        .garden-wall { max-width: 1250px; margin: 40px auto 80px auto; padding: 0 6%; }
+        .section-header { text-align: center; margin-bottom: 30px; }
+        .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-dark); }
+        
+        .garden-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        
+        .promise-card {
+            background: var(--card-bg); border-radius: 16px; padding: 25px;
+            border-top: 4px solid var(--garden-green); box-shadow: var(--shadow-soft);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;
+        }
+        .promise-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        
+        .promise-category {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--garden-green); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+        }
+        .promise-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--text-main); line-height: 1.5; margin-bottom: 15px; font-style: italic; }
+        .promise-author { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-align: right; }
+        
+        .amen-btn {
+            background: rgba(163, 177, 138, 0.15); border: none; color: var(--garden-green);
+            padding: 6px 12px; border-radius: 15px; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; transition: 0.3s; margin-top: 15px; align-self: flex-start;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .amen-btn:hover { background: var(--garden-green); color: #fff; }
+
+        footer { background: #111e11; color: #a3b18a; padding: 25px; text-align: center; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY ANIMADO -->
+    <div id="intro-overlay">
+        <i class="fa-solid fa-seedling garden-icon-intro"></i>
+        <h1 class="typewriter-title">Promise Garden</h1>
+    </div>
+
+    <!-- HEADER DE NAVEGACIÓN -->
+    <header>
+        <a href="index.html" class="brand-container">
+            <i class="fa-solid fa-mug-saucer"></i>
+            <span class="brand-name">Café con Fe</span>
+        </a>
+        <button class="menu-toggle-btn" id="openDrawerBtn"><i class="fa-solid fa-bars"></i> Menú</button>
+    </header>
+
+    <!-- MENÚ PLEGABLE LATERAL (DRAWER) -->
+    <div class="side-drawer-overlay" id="drawerOverlay"></div>
+    <aside class="side-drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <h3>Navegación</h3>
+            <button id="closeDrawerBtn" style="background:none; border:none; font-size:1.2rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="drawer-menu">
+            <li><a href="index.html" class="drawer-link">Inicio</a></li>
+            <li><a href="literatura.html" class="drawer-link">Galería Literaria</a></li>
+            <li><a href="Olivo.html" class="drawer-link">Salón Olivo</a></li>
+            <li><a href="garden.html" class="drawer-link">Promise Garden</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero-section">
+            <h1 class="hero-title">Jardín de las Promesas</h1>
+            <p class="hero-subtitle">"Un espacio sagrado para sembrar reflexiones, compartir oraciones y hacer florecer nuestra esperanza comunitaria."</p>
+        </section>
+
+        <!-- FORMULARIO PARA SEMBRAR -->
+        <section class="plant-section">
+            <div class="plant-card">
+                <h3><i class="fa-solid fa-leaf" style="color:var(--garden-green);"></i> Sembrar una Promesa u Oración</h3>
+                <form id="promiseForm">
+                    <div class="form-group">
+                        <label for="authorName">Tu Nombre o Seudónimo:</label>
+                        <input type="text" id="authorName" class="form-control" placeholder="Ej. Hermano Mateo (o déjalo Anónimo)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categorySelect">Categoría:</label>
+                        <select id="categorySelect" class="form-control">
+                            <option value="Gratitud">Gratitud & Alabanza</option>
+                            <option value="Petición">Petición & Oración</option>
+                            <option value="Promesa">Promesa Bíblica</option>
+                            <option value="Reflexión">Reflexión Diaria</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="promiseContent">Tu Mensaje o Promesa:</label>
+                        <textarea id="promiseContent" class="form-control" placeholder="Escribe aquí lo que Dios ha puesto en tu corazón..." required></textarea>
+                    </div>
+                    <button type="submit" class="plant-btn">
+                        <i class="fa-solid fa-seedling"></i> Sembrar en el Jardín
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- MURO DEL JARDÍN -->
+        <section class="garden-wall">
+            <div class="section-header">
+                <h2>Flores de la Comunidad</h2>
+            </div>
+            <div class="garden-grid" id="gardenGrid">
+                <!-- Se genera automáticamente con JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Café con Fe - Promise Garden. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // PROMESAS INICIALES DE EJEMPLO
+        const initialPromises = [
+            {
+                id: 1,
+                author: "María G.",
+                category: "Gratitud",
+                content: "Doy gracias por la paz que sobrepasa todo entendimiento en momentos de prueba.",
+                amens: 12
+            },
+            {
+                id: 2,
+                author: "Carlos R.",
+                category: "Promesa",
+                content: "«El Señor es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar.»",
+                amens: 25
+            },
+            {
+                id: 3,
+                author: "Anónimo",
+                category: "Petición",
+                content: "Pido oración por la salud y restauración de las familias de nuestra comunidad.",
+                amens: 18
+            },
+            {
+                id: 4,
+                author: "Sofía M.",
+                category: "Reflexión",
+                content: "Un café con fe por la mañana me recuerda que cada día es una nueva oportunidad para empezar de cero.",
+                amens: 9
+            }
+        ];
+
+        // RENDERIZAR PROMESAS EN EL JARDÍN
+        function renderGarden(promises) {
+            const grid = document.getElementById('gardenGrid');
+            grid.innerHTML = '';
+
+            promises.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'promise-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="promise-category">
+                            <i class="fa-solid fa-spa"></i> ${item.category}
+                        </div>
+                        <p class="promise-text">"${item.content}"</p>
+                    </div>
+                    <div>
+                        <p class="promise-author">— ${item.author}</p>
+                        <button class="amen-btn" onclick="addAmen(${item.id}, this)">
+                            <i class="fa-solid fa-hands-praying"></i> Amén (${item.amens})
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // CARGA INICIAL
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => document.body.classList.add('intro-complete'), 1800);
+            renderGarden(initialPromises);
+        });
+
+        // NAVEGACIÓN Y MENÚ LATERAL
+        const openDrawerBtn = document.getElementById('openDrawerBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        openDrawerBtn.addEventListener('click', () => { sideDrawer.classList.add('active'); drawerOverlay.classList.add('active'); });
+        closeDrawerBtn.addEventListener('click', () => { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); });
+        drawerOverlay.addEventListener('click', () => { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); });
+
+        // AGREGAR NUEVA PROMESA/ORACIÓN
+        const promiseForm = document.getElementById('promiseForm');
+        promiseForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const author = document.getElementById('authorName').value || "Anónimo";
+            const category = document.getElementById('categorySelect').value;
+            const content = document.getElementById('promiseContent').value;
+
+            const newPromise = {
+                id: Date.now(),
+                author: author,
+                category: category,
+                content: content,
+                amens: 1
+            };
+
+            initialPromises.unshift(newPromise);
+            renderGarden(initialPromises);
+            promiseForm.reset();
+
+            alert("¡Tu semilla ha sido sembrada en el Jardín de las Promesas!");
+        });
+
+        // INCREMENTAR CONTADOR DE AMÉN
+        function addAmen(id, btnElement) {
+            const item = initialPromises.find(p => p.id === id);
+            if (item) {
+                item.amens += 1;
+                btnElement.innerHTML = `<i class="fa-solid fa-hands-praying"></i> Amén (${item.amens})`;
+            }
+        }
+    </script>
+</body>
+</html>
