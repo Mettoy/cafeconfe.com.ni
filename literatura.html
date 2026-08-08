@@ -1,17 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería Literaria | Café con Fe</title>
     
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/vvKmQXzX/logo.png">
     
+    <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <title>Guía de Recursos de Crecimiento Espiritual</title>
     <style>
         :root {
             --bg-color: #fdfbf7;
@@ -24,16 +28,11 @@
             --border-color: #f0e6df;
             --shadow-soft: 0 10px 30px rgba(44, 26, 17, 0.08);
             --shadow-hover: 0 18px 40px rgba(140, 98, 57, 0.22);
-        @page {
-            size: A4;
-            margin: 18mm 15mm;
-            background-color: #f8fafc;
         }
 
         * {
             margin: 0;
             padding: 0;
-        *, *::before, *::after {
             box-sizing: border-box;
         }
 
@@ -62,9 +61,6 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            color: #1e293b;
-            margin: 0;
             padding: 20px;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
         }
@@ -177,15 +173,10 @@
             font-weight: 700;
             color: var(--primary-dark);
             letter-spacing: 1px;
-            font-size: 10.5pt;
-            line-height: 1.6;
-            background-color: #f8fafc;
         }
 
         .menu-toggle-btn {
             background: var(--primary-dark);
-        .header {
-            background-color: #0f172a;
             color: #ffffff;
             border: none;
             outline: none;
@@ -277,43 +268,15 @@
         .close-drawer-btn:hover {
             color: var(--gold-accent);
             transform: rotate(90deg);
-            padding: 24px 20px;
-            margin: -20px -20px 25px -20px;
-            border-bottom: 4px solid #d97706;
-            text-align: center;
         }
 
         .drawer-section-label {
             font-size: 0.75rem;
-        .header h1 {
-            margin: 0;
-            font-size: 20pt;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        .header p {
-            margin: 6px 0 0 0;
-            font-size: 11pt;
-            color: #94a3b8;
-        }
-        .notice-box {
-            background-color: #fffbe3;
-            border: 1px solid #fef3c7;
-            border-left: 6px solid #d97706;
-            padding: 16px 20px;
-            margin-bottom: 25px;
-            border-radius: 6px;
-        }
-        .notice-box h3 {
-            margin: 0 0 6px 0;
-            color: #92400e;
-            font-size: 12pt;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--coffee-accent);
             font-weight: 700;
             margin: 15px 0 8px 8px;
-            letter-spacing: 0.5px;
         }
 
         .drawer-menu {
@@ -327,10 +290,6 @@
             text-decoration: none;
             color: var(--text-main);
             font-size: 0.95rem;
-        .notice-box p {
-            margin: 0;
-            color: #78350f;
-            font-size: 10.5pt;
             font-weight: 500;
             padding: 12px 16px;
             border-radius: 12px;
@@ -354,9 +313,39 @@
             padding-left: 22px;
         }
 
+        /* ================= SECCIÓN DE AVISOS Y RECOMENDACIÓN ================= */
+        .notice-container {
+            max-width: 1250px;
+            margin: 120px auto 0 auto;
+            padding: 0 8%;
+        }
+
+        .notice-box {
+            background-color: #fffbe3;
+            border: 1px solid #fef3c7;
+            border-left: 6px solid #d97706;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .notice-box h3 {
+            margin: 0 0 6px 0;
+            color: #92400e;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-box p {
+            margin: 0;
+            color: #78350f;
+            font-size: 0.9rem;
+        }
+
         /* ================= PORTADA LITERARIA ================= */
         .page-hero {
-            padding: 140px 8% 50px 8%;
+            padding: 40px 8% 50px 8%;
             text-align: center;
             background: linear-gradient(180deg, rgba(44, 26, 17, 0.04) 0%, rgba(253, 251, 247, 1) 100%);
             border-bottom: 1px solid var(--border-color);
@@ -365,25 +354,12 @@
         .hero-tag {
             font-family: 'Cinzel', serif;
             font-size: 0.85rem;
-        .random-box {
-            background-color: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-left: 6px solid #2563eb;
-            padding: 18px 20px;
-            margin-bottom: 25px;
-            border-radius: 6px;
-        }
-        .random-box h3 {
-            margin: 0 0 8px 0;
-            color: #1e40af;
-            font-size: 12pt;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--coffee-accent);
             font-weight: 600;
             margin-bottom: 12px;
             display: block;
-            letter-spacing: 0.5px;
         }
 
         .page-title {
@@ -392,10 +368,6 @@
             color: var(--primary-dark);
             font-weight: 700;
             margin-bottom: 18px;
-        .random-box .rec-title {
-            font-size: 12pt;
-            font-weight: bold;
-            color: #0f172a;
         }
 
         .page-subtitle {
@@ -405,10 +377,6 @@
             max-width: 820px;
             margin: 0 auto;
             line-height: 1.7;
-        .random-box .rec-author {
-            font-size: 10pt;
-            color: #475569;
-            font-style: italic;
         }
 
         /* ================= FILTROS Y BÚSQUEDA ================= */
@@ -495,18 +463,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-        .random-box .rec-desc {
-            margin-top: 6px;
-            color: #1e293b;
-            font-size: 10pt;
-        }
-        h2.section-title {
-            color: #1e3a8a;
-            font-size: 14pt;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 6px;
-            margin-top: 25px;
-            margin-bottom: 15px;
         }
 
         .book-card {
@@ -540,13 +496,6 @@
             border-radius: 12px;
             margin-bottom: 12px;
             border: 1px solid rgba(140, 98, 57, 0.2);
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 16px 20px;
-            margin-bottom: 18px;
-            page-break-inside: avoid;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .book-category {
@@ -556,10 +505,6 @@
             color: var(--gold-accent);
             font-weight: 700;
             margin-bottom: 6px;
-        .book-header {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #e2e8f0;
-            padding-bottom: 8px;
         }
 
         .book-title {
@@ -569,18 +514,12 @@
             margin-bottom: 6px;
             line-height: 1.35;
             font-weight: 700;
-            font-size: 13pt;
-            font-weight: bold;
-            color: #0f172a;
-            margin: 0;
         }
 
         .book-author {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
             color: var(--coffee-accent);
-            font-size: 10pt;
-            color: #64748b;
             font-style: italic;
             margin-bottom: 12px;
         }
@@ -610,7 +549,6 @@
             justify-content: center;
             gap: 8px;
             transition: all 0.3s ease;
-            margin-top: 2px;
         }
 
         .request-btn:hover {
@@ -619,129 +557,18 @@
             box-shadow: 0 4px 15px rgba(140, 98, 57, 0.3);
         }
 
-        /* ================= RECOMENDACIÓN DESTACADA ================= */
-        .featured-book-section {
-            padding: 70px 8%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a0f0a 100%);
-            color: #ffffff;
-        }
-
-        .featured-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .featured-img-box {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .featured-img-box img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .featured-text h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold-accent);
-            margin-bottom: 12px;
-        }
-
-        .featured-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            line-height: 1.25;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        .featured-author {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            color: #d4c8be;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .featured-desc {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: #e6dfd5;
-            margin-bottom: 30px;
-        }
-
-        .reserve-btn-gold {
-        .badge-age {
-            display: inline-block;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #8c6239, #d4af37);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            background-color: #f1f5f9;
-            color: #334155;
-            border: 1px solid #cbd5e1;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 8.5pt;
-            font-weight: bold;
-            margin-top: 8px;
-        }
-
-        .reserve-btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-        .benefit-section {
-            margin-top: 10px;
-        }
-
         footer {
             background-color: #1a0f0a;
             color: #a89f91;
             padding: 35px 8%;
             text-align: center;
             font-size: 0.85rem;
-        .benefit-item {
-            margin-bottom: 8px;
         }
 
         @media (max-width: 900px) {
-            .featured-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .featured-img-box img {
-                height: 300px;
-            }
             .page-title {
                 font-size: 2.2rem;
             }
-        .benefit-title {
-            font-weight: bold;
-            color: #334155;
-            font-size: 10pt;
-        }
-        .benefit-desc {
-            color: #475569;
-            margin: 2px 0 0 0;
-            font-size: 10pt;
         }
     </style>
 </head>
@@ -754,9 +581,6 @@
             <h1 class="typewriter-title">Galería Literaria</h1>
             <p class="intro-subtitle">El placer de leer con café</p>
         </div>
-    <div class="header">
-        <h1>Guía de Recursos Espirituales y Devocionales</h1>
-        <p>Catálogo de Lectura & Requisitos de Acceso a Material Especializado</p>
     </div>
 
     <!-- HEADER -->
@@ -779,13 +603,7 @@
             <button class="close-drawer-btn" id="closeDrawerBtn">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-    <!-- RECOMENDACIÓN ALEATORIA AL CARGAR LA PÁGINA -->
-    <div class="random-box">
-        <h3>🎲 Lectura Recomendada del Día</h3>
-        <div id="recommended-book">
-            <!-- El contenido se genera dinámicamente mediante JavaScript -->
         </div>
-    </div>
 
         <span class="drawer-section-label">Nuestros Espacios</span>
         <ul class="drawer-menu">
@@ -802,13 +620,16 @@
             <li><a href="renta.html" class="drawer-link"><i class="fa-solid fa-calendar-check"></i> Reserva tu Espacio</a></li>
         </ul>
     </aside>
-    <!-- AVISO OBLIGATORIO DE SOLICITUD DE ACCESO -->
-    <div class="notice-box">
-        <h3>⚠️ Requisito Obligatorio: Material de Guerra Espiritual</h3>
-        <p>Los miembros pertenecientes al equipo o ministerio de <strong>Guerra Espiritual</strong> deberán <strong>solicitar acceso formal</strong> antes de poder consultar o retirar los libros y recursos correspondientes a esa área.</p>
-    </div>
 
     <main>
+        <!-- AVISO OBLIGATORIO DE SOLICITUD DE ACCESO -->
+        <div class="notice-container">
+            <div class="notice-box">
+                <h3>⚠️ Requisito Obligatorio: Material de Guerra Espiritual</h3>
+                <p>Los miembros pertenecientes al equipo o ministerio de <strong>Guerra Espiritual</strong> deberán <strong>solicitar acceso formal</strong> antes de poder consultar o retirar los libros y recursos correspondientes a esa área.</p>
+            </div>
+        </div>
+
         <!-- CABECERA DE PÁGINA -->
         <section class="page-hero">
             <span class="hero-tag">Colección de Estantería Abierta</span>
@@ -817,24 +638,12 @@
                 Explora más de 180 títulos seleccionados para la lectura en sala. Tómalo, disfrútalo con tu bebida favorita y devuelve la paz a tu día.
             </p>
         </section>
-    <!-- SECCIÓN 1: CRECIMIENTO ESPIRITUAL -->
-    <h2 class="section-title">1. Recomendaciones para Crecimiento Espiritual y Devocionales</h2>
 
         <!-- FILTROS Y BÚSQUEDA -->
         <section class="filter-section">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="Buscar por título, autor o palabras clave...">
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">1. Hábitos Espirituales para la Vida Cristiana</div>
-            <div class="book-author">Por Donald S. Whitney</div>
-            <span class="badge-age">Edad recomendada: 15+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🌱 Para crecer espiritualmente:</span>
-                <p class="benefit-desc">Te enseña a cultivar disciplinas bíblicas fundamentales (oración, ayuno, lectura de la Palabra y meditación) de forma metódica y sostenible.</p>
             </div>
 
             <div class="categories-container">
@@ -845,9 +654,6 @@
                 <button class="cat-btn" data-category="filosofia">Filosofía & Pensamiento</button>
                 <button class="cat-btn" data-category="poesia">Poesía & Clásicos</button>
                 <button class="cat-btn" data-category="ninos">Niños & Infantil</button>
-            <div class="benefit-item">
-                <span class="benefit-title">✍️ Para crear devocionales:</span>
-                <p class="benefit-desc">Proporciona una estructura clara para desglosar textos bíblicos y transformarlos en lecciones prácticas con aplicación cotidiana.</p>
             </div>
         </section>
 
@@ -855,407 +661,108 @@
         <section class="catalog-section">
             <div class="books-grid" id="booksGrid">
 
-                <!-- ===== SECCIÓN: GUERRA ESPIRITUAL (EJEMPLOS DESTACADOS) ===== -->
-                <article class="book-card" data-cat="guerra">
+                <!-- LIBRO 1 -->
+                <article class="book-card" data-cat="crecimiento">
                     <div>
                         <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Guerra Espiritual</p>
-                        <h3 class="book-title">Cerdos en la Sala</h3>
-                        <p class="book-author">Por Frank e Ida Mae Hammond</p>
-                        <p class="book-desc">Un manual práctico y clásico sobre la liberación espiritual, el discernimiento y la autoridad del creyente.</p>
+                        <p class="book-category">Crecimiento Espiritual</p>
+                        <h3 class="book-title">Hábitos Espirituales para la Vida Cristiana</h3>
+                        <p class="book-author">Por Donald S. Whitney</p>
+                        <p class="book-desc">Te enseña a cultivar disciplinas bíblicas fundamentales (oración, ayuno y meditación) de forma metódica y sostenible.</p>
                     </div>
-                    <button class="request-btn" onclick="solicitarLibro('Cerdos en la Sala')">
+                    <button class="request-btn" onclick="solicitarLibro('Hábitos Espirituales para la Vida Cristiana')">
                         <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
                     </button>
                 </article>
 
+                <!-- LIBRO 2 (GUERRA ESPIRITUAL) -->
                 <article class="book-card" data-cat="guerra">
                     <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
+                        <span class="book-badge"><i class="fa-solid fa-lock"></i> Requiere Solicitud</span>
+                        <p class="book-category">Guerra Espiritual</p>
+                        <h3 class="book-title">Cerdos en la Sala</h3>
+                        <p class="book-author">Por Frank e Ida Mae Hammond</p>
+                        <p class="book-desc">Un manual práctico sobre liberación espiritual, discernimiento y la autoridad del creyente.</p>
+                    </div>
+                    <button class="request-btn" onclick="solicitarLibro('Cerdos en la Sala')">
+                        <i class="fa-solid fa-bookmark"></i> Solicitar Acceso
+                    </button>
+                </article>
+
+                <!-- LIBRO 3 (GUERRA ESPIRITUAL) -->
+                <article class="book-card" data-cat="guerra">
+                    <div>
+                        <span class="book-badge"><i class="fa-solid fa-lock"></i> Requiere Solicitud</span>
                         <p class="book-category">Guerra Espiritual</p>
                         <h3 class="book-title">La Batalla de la Mente</h3>
                         <p class="book-author">Por Joyce Meyer</p>
                         <p class="book-desc">Estrategias bíblicas para ganar la contienda diaria que se libra en los pensamientos e intenciones.</p>
                     </div>
                     <button class="request-btn" onclick="solicitarLibro('La Batalla de la Mente')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
+                        <i class="fa-solid fa-bookmark"></i> Solicitar Acceso
                     </button>
                 </article>
 
+                <!-- LIBRO 4 (GUERRA ESPIRITUAL) -->
                 <article class="book-card" data-cat="guerra">
                     <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
+                        <span class="book-badge"><i class="fa-solid fa-lock"></i> Requiere Solicitud</span>
                         <p class="book-category">Guerra Espiritual</p>
                         <h3 class="book-title">Derribando Fortalezas</h3>
                         <p class="book-author">Por Hector Torres</p>
                         <p class="book-desc">Claves y principios para la intercesión estratégica, la sanidad espiritual y la transformación.</p>
                     </div>
                     <button class="request-btn" onclick="solicitarLibro('Derribando Fortalezas')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
+                        <i class="fa-solid fa-bookmark"></i> Solicitar Acceso
                     </button>
                 </article>
 
+                <!-- LIBRO 5 (GUERRA ESPIRITUAL) -->
                 <article class="book-card" data-cat="guerra">
                     <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
+                        <span class="book-badge"><i class="fa-solid fa-lock"></i> Requiere Solicitud</span>
                         <p class="book-category">Guerra Espiritual</p>
                         <h3 class="book-title">Victoria sobre la Oscuridad</h3>
                         <p class="book-author">Por Neil T. Anderson</p>
                         <p class="book-desc">Cómo comprender tu verdadera identidad en Cristo para caminar libre de ataduras y temores.</p>
                     </div>
                     <button class="request-btn" onclick="solicitarLibro('Victoria sobre la Oscuridad')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
+                        <i class="fa-solid fa-bookmark"></i> Solicitar Acceso
                     </button>
                 </article>
 
+                <!-- LIBRO 6 (GUERRA ESPIRITUAL) -->
                 <article class="book-card" data-cat="guerra">
                     <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
+                        <span class="book-badge"><i class="fa-solid fa-lock"></i> Requiere Solicitud</span>
                         <p class="book-category">Guerra Espiritual</p>
                         <h3 class="book-title">Oraciones que Derrotan Demonios</h3>
                         <p class="book-author">Por John Eckhardt</p>
                         <p class="book-desc">Guía práctica de oraciones basadas en las Escrituras para proclamar liberación y paz.</p>
                     </div>
                     <button class="request-btn" onclick="solicitarLibro('Oraciones que Derrotan Demonios')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
+                        <i class="fa-solid fa-bookmark"></i> Solicitar Acceso
                     </button>
                 </article>
 
-                <!-- ===== SECCIÓN: NIÑOS & INFANTIL ===== -->
-                <article class="book-card" data-cat="ninos">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Niños & Infantil</p>
-                        <h3 class="book-title">Tú Eres Especial</h3>
-                        <p class="book-author">Por Max Lucado</p>
-                        <p class="book-desc">Una entrañable historia con ilustraciones bellas sobre la verdadera autoestima a los ojos del Creador.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Tú Eres Especial')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="ninos">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Niños & Infantil</p>
-                        <h3 class="book-title">Las Crónicas de Narnia</h3>
-                        <p class="book-author">Por C.S. Lewis</p>
-                        <p class="book-desc">Una alegoría inolvidable sobre el valor, la fe y la redención en el mágico mundo de Aslan.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Las Crónicas de Narnia')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="ninos">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Niños & Infantil</p>
-                        <h3 class="book-title">La Biblia Ilustrada para Niños</h3>
-                        <p class="book-author">Por Sally Lloyd-Jones</p>
-                        <p class="book-desc">Narraciones bíblicas adaptadas con infinita ternura para compartir en familia en la cafetería.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('La Biblia Ilustrada para Niños')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="ninos">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Niños & Infantil</p>
-                        <h3 class="book-title">El Jardín Secreto</h3>
-                        <p class="book-author">Por Frances Hodgson Burnett</p>
-                        <p class="book-desc">Un clásico literario que celebra el poder de la amistad, la esperanza y la renovación natural.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('El Jardín Secreto')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <!-- ===== SECCIÓN: ESPIRITUALIDAD & FE ===== -->
-                <article class="book-card" data-cat="fe">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Espiritualidad & Fe</p>
-                        <h3 class="book-title">Confesiones</h3>
-                        <p class="book-author">Por San Agustín de Hipona</p>
-                        <p class="book-desc">Autobiografía espiritual inolvidable sobre la búsqueda incesante de la verdad y la paz divina.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Confesiones')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="fe">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Espiritualidad & Fe</p>
-                        <h3 class="book-title">Mente Abierta, Corazón Abierto</h3>
-                        <p class="book-author">Por Thomas Keating</p>
-                        <p class="book-desc">Una guía contemplativa clásica sobre el cultivo del silencio y la oración de centramiento.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Mente Abierta, Corazón Abierto')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="fe">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Espiritualidad & Fe</p>
-                        <h3 class="book-title">El Costo del Discipulado</h3>
-                        <p class="book-author">Por Dietrich Bonhoeffer</p>
-                        <p class="book-desc">Reflexión profunda y desafiante sobre el compromiso cristiano genuino y la gracia inmerecida.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('El Costo del Discipulado')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <!-- ===== SECCIÓN: CRECIMIENTO PERSONAL ===== -->
-                <article class="book-card" data-cat="crecimiento">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Crecimiento Personal</p>
-                        <h3 class="book-title">El Hombre en Busca de Sentido</h3>
-                        <p class="book-author">Por Viktor Frankl</p>
-                        <p class="book-desc">Obra maestra sobre la fuerza del espíritu humano para hallar propósito incluso en la mayor prueba.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('El Hombre en Busca de Sentido')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-
-                <article class="book-card" data-cat="crecimiento">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Crecimiento Personal</p>
-                        <h3 class="book-title">Hábitos Atómicos</h3>
-                        <p class="book-author">Por James Clear</p>
-                        <p class="book-desc">Método probado para construir pequeñas rutinas diarias que conducen a cambios extraordinarios.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Hábitos Atómicos')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-        </div>
-    </div>
-
-                <article class="book-card" data-cat="crecimiento">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Crecimiento Personal</p>
-                        <h3 class="book-title">Límites</h3>
-                        <p class="book-author">Por Henry Cloud & John Townsend</p>
-                        <p class="book-desc">Principios sanos para saber cuándo decir sí y cómo decir no, cuidando tus relaciones y paz.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Límites')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">2. En Experiencia con Dios</div>
-            <div class="book-author">Por Henry Blackaby & Claude King</div>
-            <span class="badge-age">Edad recomendada: 14+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🌱 Para crecer espiritualmente:</span>
-                <p class="benefit-desc">Desarrolla la sensibilidad para reconocer dónde está obrando Dios en tu vida y unirte activamente a Su voluntad.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-title">✍️ Para crear devocionales:</span>
-                <p class="benefit-desc">Es una excelente referencia para crear reflexiones enfocadas en la fe práctica, la obediencia y la relación personal con Dios.</p>
-            </div>
-        </div>
-    </div>
-
-                <!-- ===== SECCIÓN: FILOSOFÍA & PENSAMIENTO ===== -->
-                <article class="book-card" data-cat="filosofia">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Filosofía & Pensamiento</p>
-                        <h3 class="book-title">Meditaciones</h3>
-                        <p class="book-author">Por Marco Aurelio</p>
-                        <p class="book-desc">Pensamientos estoicos e íntimos sobre la disciplina interior, la paz de espíritu y el deber.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Meditaciones')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">3. Piense como un Gigante</div>
-            <div class="book-author">Por John C. Maxwell</div>
-            <span class="badge-age">Edad recomendada: 12+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🌱 Para crecer espiritualmente:</span>
-                <p class="benefit-desc">Fortalece el carácter, la fe, la perspectiva correcta ante los desafíos y la mentalidad de liderazgo con base en principios bíblicos.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-title">✍️ Para crear devocionales:</span>
-                <p class="benefit-desc">Ideal para redactar devocionales dinámicos y atractivos para jóvenes sobre propósito, superación personal y valores.</p>
-            </div>
-        </div>
-    </div>
-
-                <article class="book-card" data-cat="filosofia">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Filosofía & Pensamiento</p>
-                        <h3 class="book-title">Pensamientos</h3>
-                        <p class="book-author">Por Blaise Pascal</p>
-                        <p class="book-desc">Reflexiones agudas y poéticas sobre las contradicciones humanas y la búsqueda de Dios.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Pensamientos')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">4. El Conocimiento del Dios Santo</div>
-            <div class="book-author">Por A.W. Tozer</div>
-            <span class="badge-age">Edad recomendada: 16+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🌱 Para crecer espiritualmente:</span>
-                <p class="benefit-desc">Profundiza en los atributos de Dios (santidad, soberanía, amor, omnipresencia), reenfocando tu adoración y vida de oración.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-title">✍️ Para crear devocionales:</span>
-                <p class="benefit-desc">Una cantera inagotable de contenido teológico accesible, perfecta para redactar devocionales profundos y centrados en Dios.</p>
-            </div>
-        </div>
-    </div>
-
-                <!-- ===== SECCIÓN: POESÍA & CLÁSICOS ===== -->
-                <article class="book-card" data-cat="poesia">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Poesía & Clásicos</p>
-                        <h3 class="book-title">Cántico Espiritual</h3>
-                        <p class="book-author">Por San Juan de la Cruz</p>
-                        <p class="book-desc">Cima de la lírica castellana que expresa en versos la unión mística con el Creador.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('Cántico Espiritual')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">5. La Oración: Experimentando Asombro e Intimidad con Dios</div>
-            <div class="book-author">Por Timothy Keller</div>
-            <span class="badge-age">Edad recomendada: 16+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🌱 Para crecer espiritualmente:</span>
-                <p class="benefit-desc">Aporta una comprensión teológica y práctica de la oración, transformándola en una experiencia viva de comunión con Dios.</p>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-title">✍️ Para crear devocionales:</span>
-                <p class="benefit-desc">Brinda pautas claras sobre cómo guiarse por los Salmos y las Escrituras para enseñar a otros a estructurar sus tiempos de oración.</p>
-            </div>
-        </div>
-    </div>
-
-                <article class="book-card" data-cat="poesia">
-                    <div>
-                        <span class="book-badge"><i class="fa-solid fa-check"></i> Disponible en Sala</span>
-                        <p class="book-category">Poesía & Clásicos</p>
-                        <h3 class="book-title">El Principito</h3>
-                        <p class="book-author">Por Antoine de Saint-Exupéry</p>
-                        <p class="book-desc">Inolvidable relato sobre la amistad, la inocencia y lo esencial que permanece invisible a los ojos.</p>
-                    </div>
-                    <button class="request-btn" onclick="solicitarLibro('El Principito')">
-                        <i class="fa-solid fa-bookmark"></i> Solicitar para Leer
-                    </button>
-                </article>
-    <!-- SECCIÓN 2: GUERRA ESPIRITUAL (REQUIERE AUTORIZACIÓN) -->
-    <h2 class="section-title">2. Catálogo de Literatura sobre Guerra Espiritual (Requiere Solicitud)</h2>
-
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">1. Derribando Fortalezas</div>
-            <div class="book-author">Por C. Peter Wagner</div>
-            <span class="badge-age">Edad recomendada: 18+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🛡️ Enfoque estratégico:</span>
-                <p class="benefit-desc">Trata sobre la intercesión estratégica y los principios bíblicos para identificar y derribar estructuras espirituales en las ciudades e iglesias.</p>
-            </div>
-        </section>
-        </div>
-    </div>
-
-        <!-- DESTACADO DE GUERRA ESPIRITUAL -->
-        <section class="featured-book-section">
-            <div class="featured-container">
-                <div class="featured-img-box">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80" alt="Obra de Guerra Espiritual">
-                </div>
-                <div class="featured-text">
-                    <h3>Recomendación de Estantería</h3>
-                    <h2 class="featured-title">Cerdos en la Sala</h2>
-                    <p class="featured-author">Por Frank e Ida Mae Hammond</p>
-                    <p class="featured-desc">
-                        "Uno de los manuales clásicos más leídos sobre discernimiento y autoridad espiritual. Un texto claro e ilustrativo disponible en nuestras mesas para quienes buscan estudio profundo y renovación espiritual."
-                    </p>
-                    <a href="renta.html" class="reserve-btn-gold">
-                        <i class="fa-solid fa-mug-hot"></i> Leerlo con un Café
-                    </a>
-                </div>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">2. Victoria sobre la Oscuridad</div>
-            <div class="book-author">Por Neil T. Anderson</div>
-            <span class="badge-age">Edad recomendada: 15+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🛡️ Enfoque de identidad:</span>
-                <p class="benefit-desc">Enfocado en la libertad en Cristo, cómo vencer los pensamientos engañosos y reafirmar la identidad espiritual para ganar la batalla en la mente.</p>
             </div>
         </section>
     </main>
-        </div>
-    </div>
 
     <footer>
-        <p>&copy; 2026 Café con Fe. Galería Literaria Abierta para Lectura en Sala.</p>
+        <p>&copy; 2026 Café con Fe - Galería Literaria. Todos los derechos reservados.</p>
     </footer>
-    <div class="book-card">
-        <div class="book-header">
-            <div class="book-title">3. Manual de Guerra Espiritual</div>
-            <div class="book-author">Por Dr. Ed Murphy</div>
-            <span class="badge-age">Edad recomendada: 18+ años</span>
-        </div>
-        <div class="benefit-section">
-            <div class="benefit-item">
-                <span class="benefit-title">🛡️ Enfoque teológico y práctico:</span>
-                <p class="benefit-desc">Guía exegética exhaustiva basada en las Escrituras para entender el mundo invisible, la autoridad del creyente y la ministración en liberación.</p>
-            </div>
-        </div>
-    </div>
 
-    <!-- SCRIPT DE INTERACCIÓN Y FILTRADO -->
-    <!-- SCRIPT PARA SELECCIÓN ALEATORIA DE LIBRO -->
+    <!-- LÓGICA DE JAVASCRIPT -->
     <script>
-        // Animación de Entrada
-        window.addEventListener('load', () => {
+        // Animación de entrada
+        window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.body.classList.add('intro-complete');
-            }, 1400);
+            }, 2200);
         });
 
-        // Menú Lateral Desplegable
+        // Menú lateral desplegable
         const openDrawerBtn = document.getElementById('openDrawerBtn');
         const closeDrawerBtn = document.getElementById('closeDrawerBtn');
         const sideDrawer = document.getElementById('sideDrawer');
@@ -1275,20 +782,24 @@
         closeDrawerBtn.addEventListener('click', closeDrawer);
         drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Filtro por Categorías
-        const catBtns = document.querySelectorAll('.cat-btn');
+        // Función de solicitud de libros
+        function solicitarLibro(titulo) {
+            alert(`Has solicitado el libro: "${titulo}". Dirígete a recepción para retirarlo.`);
+        }
+
+        // Filtro por categorías
+        const catButtons = document.querySelectorAll('.cat-btn');
         const bookCards = document.querySelectorAll('.book-card');
 
-        catBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                catBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        catButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                catButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-                const selectedCat = btn.getAttribute('data-category');
+                const category = button.getAttribute('data-category');
 
                 bookCards.forEach(card => {
-                    const cardCat = card.getAttribute('data-cat');
-                    if (selectedCat === 'all' || cardCat === selectedCat) {
+                    if (category === 'all' || card.getAttribute('data-cat') === category) {
                         card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
@@ -1297,88 +808,23 @@
             });
         });
 
-        // Buscador Inteligente en Tiempo Real
+        // Búsqueda en tiempo real
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-        document.addEventListener('DOMContentLoaded', function() {
-            const catalog = [
-                {
-                    title: "Hábitos Espirituales para la Vida Cristiana",
-                    author: "Donald S. Whitney",
-                    age: "15+ años",
-                    desc: "Te ayudará a estructurar tus disciplinas de oración, lectura y ayuno de forma constante."
-                },
-                {
-                    title: "En Experiencia con Dios",
-                    author: "Henry Blackaby & Claude King",
-                    age: "14+ años",
-                    desc: "Excelente para aprender a conocer la voluntad de Dios y ver dónde Él ya está obrando."
-                },
-                {
-                    title: "Piense como un Gigante",
-                    author: "John C. Maxwell",
-                    age: "12+ años",
-                    desc: "Ideal para jóvenes que buscan fortalecer su carácter y liderazgo bajo principios bíblicos."
-                },
-                {
-                    title: "El Conocimiento del Dios Santo",
-                    author: "A.W. Tozer",
-                    age: "16+ años",
-                    desc: "Una lectura profunda sobre los atributos de Dios que transformará tu manera de adorar."
-                },
-                {
-                    title: "La Oración: Experimentando Asombro e Intimidad con Dios",
-                    author: "Timothy Keller",
-                    age: "16+ años",
-                    desc: "Una guía imprescindible para enriquecer tu vida personal de oración e intimidad con Dios."
-                },
-                {
-                    title: "Derribando Fortalezas",
-                    author: "C. Peter Wagner",
-                    age: "18+ años",
-                    desc: "Principios clave sobre la intercesión estratégica en el área de Guerra Espiritual."
-                },
-                {
-                    title: "Victoria sobre la Oscuridad",
-                    author: "Neil T. Anderson",
-                    age: "15+ años",
-                    desc: "Recomendado para afirmarse en la identidad en Cristo y renovar la mente frente a batallas espirituales."
-                },
-                {
-                    title: "Manual de Guerra Espiritual",
-                    author: "Dr. Ed Murphy",
-                    age: "18+ años",
-                    desc: "Estudio teológico y exegético profundo sobre la autoridad del creyente y el mundo espiritual."
-                }
-            ];
+            const searchTerm = e.target.value.toLowerCase();
 
             bookCards.forEach(card => {
                 const title = card.querySelector('.book-title').textContent.toLowerCase();
                 const author = card.querySelector('.book-author').textContent.toLowerCase();
                 const desc = card.querySelector('.book-desc').textContent.toLowerCase();
-            const randomIndex = Math.floor(Math.random() * catalog.length);
-            const selectedBook = catalog[randomIndex];
 
-                if (title.includes(term) || author.includes(term) || desc.includes(term)) {
+                if (title.includes(searchTerm) || author.includes(searchTerm) || desc.includes(searchTerm)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
             });
-            const container = document.getElementById('recommended-book');
-            container.innerHTML = `
-                <div class="rec-title">📖 ${selectedBook.title}</div>
-                <div class="rec-author">Por ${selectedBook.author} • <span style="font-style: normal; font-weight: bold;">Edad: ${selectedBook.age}</span></div>
-                <div class="rec-desc">${selectedBook.desc}</div>
-            `;
         });
-
-        // Notificación interactiva de solicitud para lectura
-        function solicitarLibro(titulo) {
-            alert(`¡"${titulo}" está listo para ti! Puedes indicarle a nuestro barista en barra el libro que deseas leer mientras disfrutas tu café.`);
-        }
     </script>
-
 </body>
 </html>
