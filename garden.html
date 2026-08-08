@@ -156,7 +156,7 @@
         .plant-btn:active { transform: translateY(0); }
 
         /* =========================================
-           NUEVO: SECCIÓN GARDEN KIDS
+           SECCIÓN GARDEN KIDS
            ========================================= */
         .kids-section {
             max-width: 1100px; margin: 60px auto 40px auto; padding: 40px 6%;
@@ -175,6 +175,29 @@
         .kids-header i { color: #e9c46a; animation: bounceSoft 2.5s infinite; }
         .kids-header p { font-family: 'Quicksand', sans-serif; font-size: 1.1rem; color: #555; margin-bottom: 30px; font-weight: 500; }
 
+        /* NUEVA SUB-SECCIÓN: INFORMACIÓN Y FOTOS */
+        .kids-info-wrapper {
+            display: flex; flex-wrap: wrap; gap: 30px; align-items: center;
+            margin-bottom: 40px; text-align: left; background: #fff; padding: 30px;
+            border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            position: relative; z-index: 2;
+        }
+        .kids-info-text { flex: 1; min-width: 300px; }
+        .kids-info-text h3 { font-family: 'Quicksand', sans-serif; color: #264653; font-size: 1.6rem; margin-bottom: 15px; }
+        .kids-info-text p { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 15px; }
+        .kids-info-text ul { list-style: none; padding: 0; margin-bottom: 15px; }
+        .kids-info-text ul li { margin-bottom: 10px; color: #2a9d8f; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        
+        .kids-info-images { flex: 1; min-width: 300px; display: flex; gap: 15px; justify-content: center; }
+        .kids-info-images img {
+            width: 100%; max-width: 240px; border-radius: 15px; object-fit: cover;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); border: 4px solid #fff;
+            transform: rotate(-3deg); transition: 0.3s;
+        }
+        .kids-info-images img:nth-child(2) { transform: rotate(4deg) translateY(15px); }
+        .kids-info-images img:hover { transform: rotate(0) scale(1.05); z-index: 10; }
+
+        /* TARJETAS DE ACTIVIDADES NIÑOS */
         .kids-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; position: relative; z-index: 2; }
         .kid-card {
             background: #fff; padding: 25px 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
@@ -313,7 +336,7 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: GARDEN KIDS -->
+        <!-- SECCIÓN: GARDEN KIDS -->
         <section class="kids-section scroll-anim" id="gardenKids">
             <i class="fa-solid fa-sun kids-decoration kd-1"></i>
             <i class="fa-solid fa-butterfly kids-decoration kd-2"></i>
@@ -322,6 +345,24 @@
             <div class="kids-header">
                 <h2><i class="fa-solid fa-sun"></i> Garden Kids</h2>
                 <p>Un rincón lleno de color para que los más pequeños cultiven su fe jugando y aprendiendo.</p>
+            </div>
+
+            <!-- BLOQUE DE INFORMACIÓN CON FOTOS -->
+            <div class="kids-info-wrapper">
+                <div class="kids-info-text">
+                    <h3>Comodidad, Diversión y Fe</h3>
+                    <p>En <strong>Garden Kids</strong>, nos aseguramos de que tus pequeños disfruten de un espacio diseñado para su máxima comodidad y seguridad. ¡Aquí no hay lugar para el aburrimiento!</p>
+                    <p>Mientras tú disfrutas de tu café y tiempo de reflexión en total tranquilidad, nuestro maravilloso equipo de trabajadores y maestros cristianos se encarga de guiar actividades dinámicas, interactivas y llenas del amor de Dios.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-shield-heart"></i> Entorno 100% seguro y climatizado.</li>
+                        <li><i class="fa-solid fa-puzzle-piece"></i> Manualidades, juegos con propósito e historias bíblicas.</li>
+                        <li><i class="fa-solid fa-hands-praying"></i> Cuidadores amorosos enfocados en sembrar valores eternos.</li>
+                    </ul>
+                </div>
+                <div class="kids-info-images">
+                    <img src="https://i.ibb.co/214m4gwv/foto.jpg" alt="Niños divirtiéndose en Garden Kids">
+                    <img src="https://i.ibb.co/214m4gwv/foto.jpg" alt="Actividades cristianas para niños en el café">
+                </div>
             </div>
 
             <div class="kids-grid">
