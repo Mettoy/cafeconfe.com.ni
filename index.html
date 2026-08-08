@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,9 +20,12 @@
             --primary-dark: #2c1a11;
             --coffee-accent: #8c6239;
             --gold-accent: #d4af37;
+            --gold-hover: #b89528;
             --text-main: #3a322d;
             --text-muted: #7a6e65;
             --border-color: #f0e6df;
+            --shadow-soft: 0 10px 30px rgba(44, 26, 17, 0.08);
+            --shadow-hover: 0 18px 40px rgba(140, 98, 57, 0.22);
         }
 
         * {
@@ -42,7 +45,7 @@
             overflow-x: hidden;
         }
 
-        /* ================= OVERLAY DE ENTRADA RÁPIDO & ANIMADO ================= */
+        /* ================= OVERLAY DE ENTRADA ANIMADO ================= */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -57,7 +60,7 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
         }
 
         .intro-content {
@@ -66,18 +69,16 @@
             align-items: center;
         }
 
-        /* Taza de café animada */
         .coffee-cup-icon {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: var(--coffee-accent);
             margin-bottom: 15px;
-            animation: cupPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: cupPop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseGlow 2s infinite ease-in-out alternate 0.7s;
         }
 
-        /* Texto efecto Máquina de Escribir */
         .typewriter-title {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: var(--primary-dark);
             font-weight: 700;
             letter-spacing: 2px;
@@ -92,17 +93,21 @@
             font-size: 0.95rem;
             color: var(--coffee-accent);
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-top: 10px;
             opacity: 0;
             animation: fadeInSubtitle 0.4s ease 1s forwards;
             text-transform: uppercase;
         }
 
-        /* Keyframes Animaciones */
         @keyframes cupPop {
-            0% { transform: scale(0) translateY(20px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
+            0% { transform: scale(0) translateY(20px) rotate(-10deg); opacity: 0; }
+            100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(212,175,55,0)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(212,175,55,0.6)); }
         }
 
         @keyframes typing {
@@ -116,10 +121,10 @@
         }
 
         @keyframes fadeInSubtitle {
-            to { opacity: 1; }
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
         }
 
-        /* Ocultar splash al terminar */
         .intro-complete #intro-overlay {
             opacity: 0;
             visibility: hidden;
@@ -132,14 +137,15 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 18px 8%;
+            padding: 16px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(240, 230, 223, 0.8);
+            transition: all 0.3s ease;
         }
 
         .brand-container {
@@ -147,50 +153,241 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .brand-container:hover {
+            transform: scale(1.05);
         }
 
         .brand-container i {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--coffee-accent);
+            transition: transform 0.4s ease;
+        }
+
+        .brand-container:hover i {
+            transform: rotate(15deg);
+            color: var(--gold-accent);
         }
 
         .brand-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--primary-dark);
             letter-spacing: 1px;
         }
 
-        nav ul {
+        /* Menú Horizontal */
+        nav.main-nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 20px;
+            align-items: center;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
+        /* ESTILO SUPER ANIMADO PARA BOTONES PRINCIPALES */
+        .btn-nav {
             position: relative;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 10px 18px;
+            border-radius: 25px;
+            border: 1.5px solid transparent;
+            background: linear-gradient(135deg, rgba(140,98,57,0.05), rgba(212,175,55,0.08));
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1;
         }
 
-        nav a::after {
+        .btn-nav i {
+            font-size: 0.9rem;
+            color: var(--coffee-accent);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-nav::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background-color: var(--gold-accent);
-            transition: width 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--coffee-accent), var(--gold-accent));
+            transition: left 0.4s ease;
+            z-index: -1;
         }
 
-        nav a:hover { color: var(--coffee-accent); }
-        nav a:hover::after { width: 100%; }
+        .btn-nav:hover {
+            color: #ffffff;
+            border-color: var(--gold-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(140, 98, 57, 0.3);
+        }
+
+        .btn-nav:hover i {
+            color: #ffffff;
+            transform: scale(1.2) rotate(8deg);
+        }
+
+        .btn-nav:hover::before {
+            left: 0;
+        }
+
+        .btn-nav:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* BOTÓN MENÚ PLEGABLE (HAMBURGUESA) */
+        .menu-toggle-btn {
+            background: var(--primary-dark);
+            color: #ffffff;
+            border: none;
+            outline: none;
+            padding: 10px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 26, 17, 0.2);
+        }
+
+        .menu-toggle-btn:hover {
+            background: var(--coffee-accent);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(140, 98, 57, 0.35);
+        }
+
+        .menu-toggle-btn i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle-btn:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* ================= MENÚ PLEGABLE LATERAL (DRAWER) ================= */
+        .side-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(44, 26, 17, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .side-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100vh;
+            background: var(--bg-color);
+            z-index: 2001;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .side-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .drawer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .close-drawer-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-drawer-btn:hover {
+            color: var(--gold-accent);
+            transform: rotate(90deg);
+        }
+
+        .drawer-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .drawer-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 18px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drawer-link i {
+            color: var(--coffee-accent);
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-link:hover {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--primary-dark);
+            padding-left: 25px;
+        }
+
+        .drawer-link:hover i {
+            transform: scale(1.2) translateX(3px);
+            color: var(--gold-accent);
+        }
 
         /* ================= SECCIÓN HERO ================= */
         .hero {
@@ -200,15 +397,15 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 130px 20px 60px 20px;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, rgba(253,251,247,1) 70%);
+            padding: 140px 20px 60px 20px;
+            background: radial-gradient(circle at center, rgba(212,175,55,0.12) 0%, rgba(253,251,247,1) 70%);
         }
 
         .hero-content {
             max-width: 800px;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .intro-complete .hero-content {
@@ -224,16 +421,23 @@
             color: var(--gold-accent);
             font-weight: 600;
             margin-bottom: 20px;
-            padding: 6px 16px;
+            padding: 8px 20px;
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 30px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+            animation: floatTag 3s infinite ease-in-out alternate;
+        }
+
+        @keyframes floatTag {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
         }
 
         .hero-title {
             font-family: 'Cinzel', serif;
             font-size: 3.2rem;
-            line-height: 1.2;
+            line-height: 1.25;
             color: var(--primary-dark);
             margin-bottom: 20px;
             font-weight: 700;
@@ -247,24 +451,42 @@
             font-weight: 300;
         }
 
+        /* Botón CTA Animado */
         .cta-button {
             display: inline-block;
-            padding: 14px 36px;
-            background-color: var(--primary-dark);
+            position: relative;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #42281a 100%);
             color: #ffffff;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 30px;
             font-size: 0.9rem;
             letter-spacing: 2px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(44, 26, 17, 0.15);
+            font-weight: 600;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(44, 26, 17, 0.25);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
         }
 
         .cta-button:hover {
-            background-color: var(--coffee-accent);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(140, 98, 57, 0.25);
+            background: linear-gradient(135deg, var(--coffee-accent) 0%, var(--gold-accent) 100%);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 14px 30px rgba(140, 98, 57, 0.35);
+        }
+
+        .cta-button:hover::after {
+            left: 100%;
         }
 
         /* ================= MENÚ DE ESPECIALIDADES ================= */
@@ -280,54 +502,94 @@
             color: var(--primary-dark);
             text-align: center;
             margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-accent);
+            margin: 12px auto 0 auto;
+            border-radius: 2px;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
         }
 
         .menu-card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 35px 25px;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+            box-shadow: var(--shadow-soft);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--coffee-accent), var(--gold-accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(140, 98, 57, 0.08);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .menu-card:hover::before {
+            opacity: 1;
         }
 
         .menu-icon {
-            font-size: 2rem;
+            font-size: 2.3rem;
             color: var(--coffee-accent);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+
+        .menu-card:hover .menu-icon {
+            transform: scale(1.2) rotate(-8deg);
+            color: var(--gold-accent);
         }
 
         .menu-card h3 {
             font-family: 'Cinzel', serif;
             font-size: 1.3rem;
             color: var(--primary-dark);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .menu-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
         .menu-price {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--gold-accent);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
         }
 
         /* ================= CITA Y FOOTER ================= */
@@ -364,9 +626,8 @@
         }
 
         /* Responsive UI */
-        @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            nav { display: none; }
+        @media (max-width: 900px) {
+            nav.main-nav { display: none; }
             .hero-title { font-size: 2.3rem; }
             .typewriter-title { font-size: 1.8rem; }
             .coffee-cup-icon { font-size: 2.8rem; }
@@ -375,6 +636,7 @@
 </head>
 <body>
 
+    <!-- OVERLAY INTRO -->
     <div id="intro-overlay">
         <div class="intro-content">
             <i class="fa-solid fa-mug-hot coffee-cup-icon"></i>
@@ -383,21 +645,69 @@
         </div>
     </div>
 
+    <!-- HEADER / NAVEGACIÓN -->
     <header>
         <a href="#" class="brand-container">
             <i class="fa-solid fa-mug-saucer"></i>
             <span class="brand-name">Café con Fe</span>
         </a>
-        <nav>
+
+        <!-- MENÚ PRINCIPAL HORIZONTAL (Animación por Botón) -->
+        <nav class="main-nav">
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#menu">Nuestro Menú</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li>
+                    <a href="literatura.html" class="btn-nav">
+                        <i class="fa-solid fa-book-open"></i> Galería Literaria
+                    </a>
+                </li>
+                <li>
+                    <a href="Olivo.html" class="btn-nav">
+                        <i class="fa-solid fa-seedling"></i> Salón Olivó
+                    </a>
+                </li>
+                <li>
+                    <a href="garden.html" class="btn-nav">
+                        <i class="fa-solid fa-leaf"></i> Promise Garden
+                    </a>
+                </li>
             </ul>
         </nav>
+
+        <!-- BOTÓN MÁS OPCIONES (Menú Plegable) -->
+        <button class="menu-toggle-btn" id="openDrawerBtn">
+            <i class="fa-solid fa-bars"></i> Menú
+        </button>
     </header>
 
+    <!-- PANEL LATERAL PLEGABLE (OFF-CANVAS DRAWER) -->
+    <div class="side-drawer-overlay" id="drawerOverlay"></div>
+    <aside class="side-drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Navegación</span>
+            <button class="close-drawer-btn" id="closeDrawerBtn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <ul class="drawer-menu">
+            <li>
+                <a href="conocenos.html" class="drawer-link">
+                    <i class="fa-solid fa-users"></i> Quienes somos
+                </a>
+            </li>
+            <li>
+                <a href="contacto.html" class="drawer-link">
+                    <i class="fa-solid fa-circle-info"></i> Acerca de nosotros
+                </a>
+            </li>
+            <li>
+                <a href="renta.html" class="drawer-link">
+                    <i class="fa-solid fa-calendar-check"></i> Reserva tu espacio
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- SECCIÓN PRINCIPAL HERO -->
     <main>
         <section id="inicio" class="hero">
             <div class="hero-content">
@@ -410,6 +720,7 @@
             </div>
         </section>
 
+        <!-- SECCIÓN MENÚ ESPECIALIDADES -->
         <section id="menu" class="section">
             <h2 class="section-title">Nuestras Especialidades</h2>
             <div class="menu-grid">
@@ -423,7 +734,7 @@
 
                 <div class="menu-card">
                     <i class="fa-solid fa-whiskey-glass menu-icon"></i>
-                    <h3>Espresso Espresso</h3>
+                    <h3>Espresso Intenso</h3>
                     <p>Extracción concentrada con crema densa, intensa y balanceada.</p>
                     <span class="menu-price">$2.50</span>
                 </div>
@@ -445,6 +756,7 @@
             </div>
         </section>
 
+        <!-- SECCIÓN CITA -->
         <section id="experiencia" class="quote-banner">
             <p class="quote-text">"La fe en las cosas buenas comienza con una buena taza de café por la mañana."</p>
             <p class="quote-author">Café con Fe — Horarios: Lun a Sáb / 7:00 AM - 8:00 PM</p>
@@ -455,13 +767,34 @@
         <p>&copy; 2026 Café con Fe. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- JAVASCRIPT DE INTERACCIONES Y MENÚ PLEGABLE -->
     <script>
+        // Transición Automática del Intro Overlay
         window.addEventListener('load', () => {
-            // Entra a la web automáticamente después de 1.6 segundos (sin dilatar)
             setTimeout(() => {
                 document.body.classList.add('intro-complete');
             }, 1600);
         });
+
+        // Lógica del Menú Plegable (Drawer)
+        const openDrawerBtn = document.getElementById('openDrawerBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        function openDrawer() {
+            sideDrawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+        }
+
+        function closeDrawer() {
+            sideDrawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+        }
+
+        openDrawerBtn.addEventListener('click', openDrawer);
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
     </script>
 </body>
 </html>
