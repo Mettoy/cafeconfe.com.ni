@@ -59,7 +59,8 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+            cursor: pointer;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
         }
 
         .intro-content {
@@ -99,6 +100,15 @@
             text-transform: uppercase;
         }
 
+        .tap-hint {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInSubtitle 0.4s ease 1.3s forwards, pulseHint 1.5s infinite ease-in-out 1.7s;
+        }
+
         @keyframes cupPop {
             0% { transform: scale(0) translateY(20px) rotate(-10deg); opacity: 0; }
             100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
@@ -122,6 +132,11 @@
         @keyframes fadeInSubtitle {
             to { opacity: 1; transform: translateY(0); }
             from { opacity: 0; transform: translateY(10px); }
+        }
+
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.6; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-3px); }
         }
 
         .intro-complete #intro-overlay {
@@ -162,11 +177,11 @@
         .brand-container i {
             font-size: 1.6rem;
             color: var(--coffee-accent);
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, color 0.4s ease;
         }
 
         .brand-container:hover i {
-            transform: rotate(15deg);
+            transform: rotate(20deg) scale(1.1);
             color: var(--gold-accent);
         }
 
@@ -195,15 +210,30 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(44, 26, 17, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-toggle-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .menu-toggle-btn:hover::after {
+            left: 100%;
         }
 
         .menu-toggle-btn:hover {
             background: var(--coffee-accent);
-            transform: scale(1.04);
+            transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(140, 98, 57, 0.35);
         }
 
-        /* ================= PANEL LATERAL ================= */
+        /* ================= PANEL LATERAL (DRAWER) ================= */
         .side-drawer-overlay {
             position: fixed;
             top: 0;
@@ -309,7 +339,7 @@
             color: var(--primary-dark);
             border-color: var(--gold-accent);
             padding-left: 22px;
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         /* ================= SECCIÓN HERO ================= */
@@ -335,7 +365,7 @@
             max-width: 800px;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
             margin-top: 180px;
         }
 
@@ -352,6 +382,12 @@
             margin-bottom: 20px;
             font-weight: 700;
             text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            animation: floatText 4s infinite ease-in-out alternate;
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
         }
 
         .hero-description {
@@ -376,14 +412,30 @@
             font-weight: 600;
             transition: all 0.4s ease;
             box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg) translateY(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .cta-button:hover::after {
+            transform: rotate(45deg) translateY(100%);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
         }
 
-        /* ================= SECCIÓN BIENVENIDOS & EQUIPO ================= */
+        /* ================= SECCIONES Y ANIMACIONES AL SCROLL ================= */
         .welcome-section, .team-section {
             padding: 70px 8%;
             max-width: 1250px;
@@ -395,6 +447,18 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+        }
+
+        /* EFECTO REVEAL (Aparecer con Scroll) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .text-col h2 {
@@ -434,6 +498,10 @@
             padding-left: 18px;
             margin-top: 20px;
             line-height: 1.6;
+            background: rgba(212, 175, 55, 0.05);
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 0 10px 10px 0;
         }
 
         .img-col-right, .img-col-left {
@@ -451,11 +519,12 @@
             object-fit: cover;
             border-radius: 20px;
             box-shadow: var(--shadow-hover);
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
         }
 
         .styled-img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03) rotate(0.5deg);
+            box-shadow: 0 20px 45px rgba(140, 98, 57, 0.3);
         }
 
         /* ================= SECCIÓN MENÚ CON IMÁGENES ================= */
@@ -471,6 +540,7 @@
             color: var(--primary-dark);
             text-align: center;
             margin-bottom: 45px;
+            position: relative;
         }
 
         .section-title::after {
@@ -481,6 +551,11 @@
             background: var(--gold-accent);
             margin: 12px auto 0 auto;
             border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .section-title:hover::after {
+            width: 110px;
         }
 
         .menu-gallery {
@@ -496,13 +571,13 @@
             overflow: hidden;
             box-shadow: var(--shadow-soft);
             border: 1px solid var(--border-color);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .menu-image-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
-            border-color: rgba(212, 175, 55, 0.4);
+            border-color: rgba(212, 175, 55, 0.6);
         }
 
         .menu-image-card img {
@@ -510,6 +585,11 @@
             height: auto;
             display: block;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-image-card:hover img {
+            transform: scale(1.04);
         }
 
         footer {
@@ -551,11 +631,12 @@
             <i class="fa-solid fa-mug-hot coffee-cup-icon"></i>
             <h1 class="typewriter-title">Café con Fe</h1>
             <p class="intro-subtitle">El arte del buen café</p>
+            <p class="tap-hint"><i class="fa-solid fa-music"></i> Haz clic o toca para iniciar con música</p>
         </div>
     </div>
 
-    <!-- REPRODUCTOR AUDIO MP3 NATIVO (OCULTO) -->
-    <audio id="bg-music" loop preload="auto">
+    <!-- REPRODUCTOR DE AUDIO MP3 NATIVO CON AUTOPLAY -->
+    <audio id="bg-music" loop autoplay preload="auto">
         <source src="cancion.mp3" type="audio/mpeg">
         Tu navegador no soporta el reproductor de audio.
     </audio>
@@ -622,7 +703,7 @@
     </aside>
 
     <main>
-        <!-- PORTADA -->
+        <!-- PORTADA HERO -->
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">Un Tiempo de Calma y Buena Compañía</h1>
@@ -633,8 +714,8 @@
             </div>
         </section>
 
-        <!-- PRIMERA SECCIÓN -->
-        <section id="bienvenidos" class="welcome-section">
+        <!-- PRIMERA SECCIÓN CON ANIMACIÓN REVEAL -->
+        <section id="bienvenidos" class="welcome-section reveal">
             <div class="two-column-grid">
                 <div class="text-col">
                     <span class="subtitle-tag">Nuestra Casa</span>
@@ -655,8 +736,8 @@
             </div>
         </section>
 
-        <!-- SEGUNDA SECCIÓN -->
-        <section class="team-section">
+        <!-- SEGUNDA SECCIÓN CON ANIMACIÓN REVEAL -->
+        <section class="team-section reveal">
             <div class="two-column-grid">
                 <div class="img-col-left">
                     <img src="https://i.ibb.co/qLS3fwTk/equipo-atencion.jpg" alt="Nuestro Equipo en Café con Fe" class="styled-img">
@@ -678,7 +759,7 @@
         </section>
 
         <!-- SECCIÓN DE MENÚ CON IMÁGENES -->
-        <section id="menu" class="section">
+        <section id="menu" class="section reveal">
             <h2 class="section-title">Nuestro Menú</h2>
             <div class="menu-gallery">
                 <div class="menu-image-card">
@@ -695,13 +776,40 @@
         <p>&copy; 2026 Café con Fe. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACCIÓN Y AUDIO -->
+    <!-- SCRIPT DE INTERACCIÓN, AUDIO Y ANIMACIONES -->
     <script>
-        // Transición de la Intro Animada
+        const bgMusic = document.getElementById('bg-music');
+        const introOverlay = document.getElementById('intro-overlay');
+
+        // Reproductor de Música Optimizado
+        function playAudio() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    console.log("Música iniciada correctamente.");
+                }).catch(err => {
+                    console.log("Autoplay bloqueado hasta la interacción del usuario:", err);
+                });
+            }
+        }
+
+        // Intenta reproducir al cargar la página
         window.addEventListener('load', () => {
+            playAudio();
+
+            // Oculta la intro automáticamente
             setTimeout(() => {
                 document.body.classList.add('intro-complete');
-            }, 1500);
+            }, 2500);
+        });
+
+        // Activa la música al menor clic, toque o scroll
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(event => {
+            document.addEventListener(event, playAudio, { once: true });
+        });
+
+        introOverlay.addEventListener('click', () => {
+            playAudio();
+            document.body.classList.add('intro-complete');
         });
 
         // Control del Panel Lateral (Drawer)
@@ -724,18 +832,24 @@
         closeDrawerBtn.addEventListener('click', closeDrawer);
         drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Control de Audio MP3
-        const bgMusic = document.getElementById('bg-music');
+        // Animaciones de Aparición con Scroll (Scroll Reveal)
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
 
-        function playAudio() {
-            bgMusic.play().catch(error => {
-                console.log("El reproductor esperará la interacción del usuario:", error);
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 120;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
             });
         }
 
-        // Se activa al realizar la primera interacción en la página (clic o toque)
-        document.addEventListener('click', playAudio, { once: true });
-        document.addEventListener('touchstart', playAudio, { once: true });
+        window.addEventListener('scroll', revealOnScroll);
+        // Disparar una vez para animar elementos visibles de entrada
+        revealOnScroll();
     </script>
 </body>
 </html>
