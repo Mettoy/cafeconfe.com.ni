@@ -178,7 +178,6 @@
             letter-spacing: 1px;
         }
 
-        /* Botón Único para Desplegar el Menú */
         .menu-toggle-btn {
             background: var(--primary-dark);
             color: #ffffff;
@@ -204,16 +203,7 @@
             box-shadow: 0 6px 20px rgba(140, 98, 57, 0.35);
         }
 
-        .menu-toggle-btn i {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-toggle-btn:hover i {
-            transform: rotate(90deg);
-        }
-
-        /* ================= MENÚ PLEGABLE COMPLETO (PANEL LATERAL) ================= */
+        /* ================= PANEL LATERAL ================= */
         .side-drawer-overlay {
             position: fixed;
             top: 0;
@@ -314,12 +304,6 @@
             transition: all 0.3s ease;
         }
 
-        .drawer-link i {
-            color: var(--coffee-accent);
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-        }
-
         .drawer-link:hover {
             background: linear-gradient(135deg, rgba(140,98,57,0.12), rgba(212,175,55,0.18));
             color: var(--primary-dark);
@@ -328,12 +312,7 @@
             transform: translateX(3px);
         }
 
-        .drawer-link:hover i {
-            transform: scale(1.2) rotate(6deg);
-            color: var(--gold-accent);
-        }
-
-        /* ================= PORTADA HERO (IMAGEN COMPLETA) ================= */
+        /* ================= SECCIÓN HERO ================= */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -342,7 +321,6 @@
             align-items: center;
             text-align: center;
             padding: 140px 20px 50px 20px;
-            /* IMAGEN COMPLETA AJUSTADA */
             background-image: linear-gradient(180deg, rgba(28, 17, 11, 0.3) 0%, rgba(28, 17, 11, 0.75) 100%), 
                               url('https://i.ibb.co/27mHzGc0/bg-hero.jpg');
             background-position: center top;
@@ -405,9 +383,9 @@
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
         }
 
-        /* ================= SECCIÓN BIENVENIDOS (FOTO DER. / TEXTO IZQ.) ================= */
-        .welcome-section {
-            padding: 90px 8% 60px 8%;
+        /* ================= SECCIÓN BIENVENIDOS & EQUIPO ================= */
+        .welcome-section, .team-section {
+            padding: 70px 8%;
             max-width: 1250px;
             margin: 0 auto;
         }
@@ -458,11 +436,13 @@
             line-height: 1.6;
         }
 
-        .img-col-right {
+        .img-col-right, .img-col-left {
             display: flex;
-            justify-content: flex-end;
             position: relative;
         }
+        
+        .img-col-right { justify-content: flex-end; }
+        .img-col-left { justify-content: flex-start; }
 
         .styled-img {
             width: 100%;
@@ -478,20 +458,7 @@
             transform: scale(1.02);
         }
 
-        /* ================= NUEVA SECCIÓN EQUIPO (FOTO IZQ. / TEXTO DER.) ================= */
-        .team-section {
-            padding: 60px 8% 90px 8%;
-            max-width: 1250px;
-            margin: 0 auto;
-        }
-
-        .img-col-left {
-            display: flex;
-            justify-content: flex-start;
-            position: relative;
-        }
-
-        /* ================= MENÚ ESPECIALIDADES ================= */
+        /* ================= SECCIÓN MENÚ CON IMÁGENES ================= */
         .section {
             padding: 70px 8%;
             max-width: 1200px;
@@ -516,55 +483,33 @@
             border-radius: 2px;
         }
 
-        .menu-grid {
+        .menu-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            justify-content: center;
         }
 
-        .menu-card {
+        .menu-image-card {
             background: var(--card-bg);
-            padding: 35px 25px;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
+            overflow: hidden;
             box-shadow: var(--shadow-soft);
-            text-align: center;
-            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .menu-card:hover {
+        .menu-image-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
             border-color: rgba(212, 175, 55, 0.4);
         }
 
-        .menu-icon {
-            font-size: 2.2rem;
-            color: var(--coffee-accent);
-            margin-bottom: 18px;
-        }
-
-        .menu-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .menu-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-
-        .menu-price {
-            font-weight: 700;
-            color: var(--gold-accent);
-            font-size: 1.1rem;
-            background: rgba(212, 175, 55, 0.1);
-            padding: 6px 16px;
-            border-radius: 20px;
+        .menu-image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
 
         footer {
@@ -609,20 +554,25 @@
         </div>
     </div>
 
-    <!-- HEADER SIMPLIFICADO -->
+    <!-- REPRODUCTOR AUDIO MP3 NATIVO (OCULTO) -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+    </audio>
+
+    <!-- HEADER -->
     <header>
         <a href="#" class="brand-container">
             <i class="fa-solid fa-mug-saucer"></i>
             <span class="brand-name">Café con Fe</span>
         </a>
 
-        <!-- ÚNICO BOTÓN DE NAVEGACIÓN -->
         <button class="menu-toggle-btn" id="openDrawerBtn">
             <i class="fa-solid fa-bars"></i> Menú
         </button>
     </header>
 
-    <!-- PANEL LATERAL CON TODOS LOS BOTONES -->
+    <!-- PANEL LATERAL -->
     <div class="side-drawer-overlay" id="drawerOverlay"></div>
     <aside class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -672,7 +622,7 @@
     </aside>
 
     <main>
-        <!-- PORTADA CON LA FOTO COMPLETA -->
+        <!-- PORTADA -->
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">Un Tiempo de Calma y Buena Compañía</h1>
@@ -683,97 +633,60 @@
             </div>
         </section>
 
-        <!-- PRIMERA SECCIÓN (TEXTO IZQUIERDA / FOTO DERECHA) -->
+        <!-- PRIMERA SECCIÓN -->
         <section id="bienvenidos" class="welcome-section">
             <div class="two-column-grid">
-                
                 <div class="text-col">
                     <span class="subtitle-tag">Nuestra Casa</span>
                     <h2>Bienvenidos a Café con Fe</h2>
-                    
                     <p class="body-p">
                         Hay espacios diseñados para la prisa, y otros pensados para disfrutar el momento. Café con Fe nace como un punto de encuentro acogedor, ideal para quienes buscan un respiro en su rutina diaria.
                     </p>
-                    
                     <p class="body-p">
                         Aquí preparamos cada bebida con granos de especialidad seleccionados, creando un ambiente donde las ideas fluyen, las conversaciones se disfrutan y cada persona encuentra un espacio propio de tranquilidad.
                     </p>
-
                     <p class="quote-box">
                         "Un entorno cálido para compartir, reflexionar y disfrutar de un excelente café."
                     </p>
                 </div>
-
                 <div class="img-col-right">
                     <img src="https://i.ibb.co/XZVSSk1W/cafe-espacio.jpg" alt="Instalaciones de Café con Fe" class="styled-img">
                 </div>
-
             </div>
         </section>
 
-        <!-- SEGUNDA SECCIÓN (FOTO IZQUIERDA / TEXTO DERECHA) -->
+        <!-- SEGUNDA SECCIÓN -->
         <section class="team-section">
             <div class="two-column-grid">
-                
-                <!-- FOTO A LA IZQUIERDA -->
                 <div class="img-col-left">
                     <img src="https://i.ibb.co/qLS3fwTk/equipo-atencion.jpg" alt="Nuestro Equipo en Café con Fe" class="styled-img">
                 </div>
-
-                <!-- INFORMACIÓN A LA DERECHA -->
                 <div class="text-col">
                     <span class="subtitle-tag">Atención Personalizada</span>
                     <h2>Nuestro Equipo</h2>
-                    
                     <p class="body-p">
                         Detrás de cada taza hay un equipo humano comprometido con brindarte una experiencia amable, atenta y respetuosa en todo momento.
                     </p>
-                    
                     <p class="body-p">
                         Nos alegra adaptarnos a tus necesidades: ya sea que busques un rincón sereno para tus lecturas personales, un espacio cómodo para coordinar tus reuniones grupales, o un tiempo de tranquilidad para tus momentos de reflexión, estamos aquí para servirte con calidez.
                     </p>
-
                     <p class="quote-box">
                         "El lugar idóneo para tus espacios de estudio, reuniones de grupo o momentos de reflexión diaria."
                     </p>
                 </div>
-
             </div>
         </section>
 
-        <!-- ESPECIALIDADES -->
+        <!-- SECCIÓN DE MENÚ CON IMÁGENES -->
         <section id="menu" class="section">
-            <h2 class="section-title">Especialidades de la Casa</h2>
-            <div class="menu-grid">
-
-                <div class="menu-card">
-                    <i class="fa-solid fa-mug-hot menu-icon"></i>
-                    <h3>Filtrado Artesanal</h3>
-                    <p>Preparado lentamente para resaltar notas aromáticas y equilibrio perfecto.</p>
-                    <span class="menu-price">$3.50</span>
+            <h2 class="section-title">Nuestro Menú</h2>
+            <div class="menu-gallery">
+                <div class="menu-image-card">
+                    <img src="https://i.ibb.co/ns9r0G0N/menu-1.jpg" alt="Menú Café con Fe - Página 1">
                 </div>
-
-                <div class="menu-card">
-                    <i class="fa-solid fa-whiskey-glass menu-icon"></i>
-                    <h3>Espresso Doble</h3>
-                    <p>Extracción precisa, con cuerpo denso e intensidad natural.</p>
-                    <span class="menu-price">$2.50</span>
+                <div class="menu-image-card">
+                    <img src="https://i.ibb.co/tTg7dX9p/menu-2.jpg" alt="Menú Café con Fe - Página 2">
                 </div>
-
-                <div class="menu-card">
-                    <i class="fa-solid fa-cloud-sun menu-icon"></i>
-                    <h3>Cappuccino Tradicional</h3>
-                    <p>Suave textura de leche cremosa combinada con nuestro espresso de la casa.</p>
-                    <span class="menu-price">$4.00</span>
-                </div>
-
-                <div class="menu-card">
-                    <i class="fa-solid fa-cookie-bite menu-icon"></i>
-                    <h3>Acompañamientos</h3>
-                    <p>Variedad de repostería fresca horneada diariamente.</p>
-                    <span class="menu-price">Desde $2.80</span>
-                </div>
-
             </div>
         </section>
     </main>
@@ -782,14 +695,16 @@
         <p>&copy; 2026 Café con Fe. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPT PANEL DESPLEGABLE -->
+    <!-- SCRIPT DE INTERACCIÓN Y AUDIO -->
     <script>
+        // Transición de la Intro Animada
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.add('intro-complete');
             }, 1500);
         });
 
+        // Control del Panel Lateral (Drawer)
         const openDrawerBtn = document.getElementById('openDrawerBtn');
         const closeDrawerBtn = document.getElementById('closeDrawerBtn');
         const sideDrawer = document.getElementById('sideDrawer');
@@ -808,6 +723,19 @@
         openDrawerBtn.addEventListener('click', openDrawer);
         closeDrawerBtn.addEventListener('click', closeDrawer);
         drawerOverlay.addEventListener('click', closeDrawer);
+
+        // Control de Audio MP3
+        const bgMusic = document.getElementById('bg-music');
+
+        function playAudio() {
+            bgMusic.play().catch(error => {
+                console.log("El reproductor esperará la interacción del usuario:", error);
+            });
+        }
+
+        // Se activa al realizar la primera interacción en la página (clic o toque)
+        document.addEventListener('click', playAudio, { once: true });
+        document.addEventListener('touchstart', playAudio, { once: true });
     </script>
 </body>
 </html>
