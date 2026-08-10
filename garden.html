@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café con Fe | Cafetería & Especialidades</title>
+    <title>Promise Garden | Café con Fe</title>
     
     <link rel="icon" type="image/png" href="https://i.ibb.co/vvKmQXzX/logo.png">
     
@@ -20,6 +20,7 @@
             --primary-dark: #2c1a11;
             --coffee-accent: #8c6239;
             --gold-accent: #d4af37;
+            --garden-green: #2e5a44;
             --text-main: #3a322d;
             --text-muted: #6e645d;
             --border-color: #f0e6df;
@@ -69,16 +70,16 @@
             align-items: center;
         }
 
-        .coffee-cup-icon {
+        .garden-icon {
             font-size: 3.8rem;
-            color: var(--coffee-accent);
+            color: var(--garden-green);
             margin-bottom: 15px;
             animation: cupPop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseGlow 2s infinite ease-in-out alternate 0.7s;
         }
 
         .typewriter-title {
             font-family: 'Cinzel', serif;
-            font-size: 2.6rem;
+            font-size: 2.5rem;
             color: var(--primary-dark);
             font-weight: 700;
             letter-spacing: 2px;
@@ -115,8 +116,8 @@
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(212,175,55,0)); }
-            100% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(212,175,55,0.6)); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(46,90,68,0)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(46,90,68,0.5)); }
         }
 
         @keyframes typing {
@@ -342,18 +343,18 @@
             transform: translateX(4px);
         }
 
-        /* ================= SECCIÓN HERO ================= */
-        .hero {
-            min-height: 85vh;
+        /* ================= SECCIÓN HERO GARDEN ================= */
+        .hero-garden {
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 50px 20px;
-            background-image: linear-gradient(180deg, rgba(28, 17, 11, 0.3) 0%, rgba(28, 17, 11, 0.75) 100%), 
-                              url('https://i.ibb.co/27mHzGc0/bg-hero.jpg');
-            background-position: center top;
+            padding: 140px 20px 60px 20px;
+            background-image: linear-gradient(180deg, rgba(20, 35, 25, 0.45) 0%, rgba(20, 35, 25, 0.8) 100%), 
+                              url('https://i.ibb.co/6R214mHz/garden-bg.jpg');
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-color: var(--primary-dark);
@@ -366,7 +367,6 @@
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
-            margin-top: 180px;
         }
 
         body.intro-complete .hero-content {
@@ -379,15 +379,9 @@
             font-size: 3rem;
             line-height: 1.25;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             font-weight: 700;
             text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            animation: floatText 4s infinite ease-in-out alternate;
-        }
-
-        @keyframes floatText {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-6px); }
         }
 
         .hero-description {
@@ -396,14 +390,13 @@
             color: #f0e6df;
             line-height: 1.6;
             margin-bottom: 30px;
-            font-weight: 400;
             font-style: italic;
         }
 
         .cta-button {
             display: inline-block;
             padding: 14px 38px;
-            background: linear-gradient(135deg, #8c6239 0%, #d4af37 100%);
+            background: linear-gradient(135deg, var(--garden-green) 0%, var(--gold-accent) 100%);
             color: #ffffff;
             text-decoration: none;
             border-radius: 30px;
@@ -412,22 +405,6 @@
             font-weight: 600;
             transition: all 0.4s ease;
             box-shadow: 0 8px 22px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg) translateY(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .cta-button:hover::after {
-            transform: rotate(45deg) translateY(100%);
         }
 
         .cta-button:hover {
@@ -435,8 +412,8 @@
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
         }
 
-        /* ================= SECCIONES Y ANIMACIONES AL SCROLL ================= */
-        .welcome-section, .team-section {
+        /* ================= SECCIONES Y REVEAL ================= */
+        .garden-section {
             padding: 70px 8%;
             max-width: 1250px;
             margin: 0 auto;
@@ -449,7 +426,6 @@
             align-items: center;
         }
 
-        /* EFECTO REVEAL (Aparecer con Scroll) */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -463,10 +439,10 @@
 
         .text-col h2 {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             color: var(--primary-dark);
             line-height: 1.25;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             font-weight: 700;
         }
 
@@ -475,7 +451,7 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--coffee-accent);
+            color: var(--garden-green);
             font-weight: 600;
             margin-bottom: 10px;
             display: block;
@@ -493,24 +469,14 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             font-style: italic;
-            color: var(--coffee-accent);
+            color: var(--garden-green);
             border-left: 3px solid var(--gold-accent);
-            padding-left: 18px;
+            padding: 10px 18px;
             margin-top: 20px;
             line-height: 1.6;
-            background: rgba(212, 175, 55, 0.05);
-            padding-top: 10px;
-            padding-bottom: 10px;
+            background: rgba(46, 90, 68, 0.05);
             border-radius: 0 10px 10px 0;
         }
-
-        .img-col-right, .img-col-left {
-            display: flex;
-            position: relative;
-        }
-        
-        .img-col-right { justify-content: flex-end; }
-        .img-col-left { justify-content: flex-start; }
 
         .styled-img {
             width: 100%;
@@ -519,77 +485,11 @@
             object-fit: cover;
             border-radius: 20px;
             box-shadow: var(--shadow-hover);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+            transition: transform 0.5s ease;
         }
 
         .styled-img:hover {
-            transform: scale(1.03) rotate(0.5deg);
-            box-shadow: 0 20px 45px rgba(140, 98, 57, 0.3);
-        }
-
-        /* ================= SECCIÓN MENÚ CON IMÁGENES ================= */
-        .section {
-            padding: 70px 8%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: var(--primary-dark);
-            text-align: center;
-            margin-bottom: 45px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--gold-accent);
-            margin: 12px auto 0 auto;
-            border-radius: 2px;
-            transition: width 0.4s ease;
-        }
-
-        .section-title:hover::after {
-            width: 110px;
-        }
-
-        .menu-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .menu-image-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid var(--border-color);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-
-        .menu-image-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(212, 175, 55, 0.6);
-        }
-
-        .menu-image-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .menu-image-card:hover img {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         footer {
@@ -600,18 +500,9 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
-            .two-column-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .img-col-right, .img-col-left {
-                justify-content: center;
-            }
-            .styled-img {
-                height: 380px;
-            }
+            .two-column-grid { grid-template-columns: 1fr; gap: 40px; }
+            .styled-img { height: 380px; }
         }
 
         @media (max-width: 768px) {
@@ -625,10 +516,10 @@
     <!-- OVERLAY INTRO ANIMADO -->
     <div id="intro-overlay">
         <div class="intro-content">
-            <i class="fa-solid fa-mug-hot coffee-cup-icon"></i>
-            <h1 class="typewriter-title">Café con Fe</h1>
-            <p class="intro-subtitle">El arte del buen café</p>
-            <p class="tap-hint"><i class="fa-solid fa-music"></i> Haz clic o toca para iniciar con música</p>
+            <i class="fa-solid fa-leaf garden-icon"></i>
+            <h1 class="typewriter-title">Promise Garden</h1>
+            <p class="intro-subtitle">Jardín & Espacio de Paz</p>
+            <p class="tap-hint"><i class="fa-solid fa-music"></i> Haz clic o toca para continuar con música</p>
         </div>
     </div>
 
@@ -640,7 +531,7 @@
 
     <!-- HEADER -->
     <header>
-        <a href="#" class="brand-container">
+        <a href="index.html" class="brand-container">
             <i class="fa-solid fa-mug-saucer"></i>
             <span class="brand-name">Café con Fe</span>
         </a>
@@ -650,7 +541,7 @@
         </button>
     </header>
 
-    <!-- PANEL LATERAL -->
+    <!-- PANEL LATERAL (DRAWER) -->
     <div class="side-drawer-overlay" id="drawerOverlay"></div>
     <aside class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -663,6 +554,11 @@
         <span class="drawer-section-label">Nuestros Espacios</span>
         <ul class="drawer-menu">
             <li>
+                <a href="index.html" class="drawer-link">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </a>
+            </li>
+            <li>
                 <a href="literatura.html" class="drawer-link">
                     <i class="fa-solid fa-book-open"></i> Galería Literaria
                 </a>
@@ -673,7 +569,7 @@
                 </a>
             </li>
             <li>
-                <a href="garden.html" class="drawer-link">
+                <a href="garden.html" class="drawer-link" style="border-color: var(--gold-accent);">
                     <i class="fa-solid fa-leaf"></i> Promise Garden
                 </a>
             </li>
@@ -700,70 +596,35 @@
     </aside>
 
     <main>
-        <!-- PORTADA HERO -->
-        <section id="inicio" class="hero">
+        <!-- PORTADA GARDEN -->
+        <section class="hero-garden">
             <div class="hero-content">
-                <h1 class="hero-title">Un Tiempo de Calma y Buena Compañía</h1>
+                <h1 class="hero-title">Promise Garden</h1>
                 <p class="hero-description">
-                    "Donde cada taza se sirve con dedicación y cada rincón invita a la conversación sincera."
+                    Un refugio al aire libre rodeado de naturaleza, diseñado para revitalizar el alma y disfrutar instantes de paz.
                 </p>
-                <a href="#bienvenidos" class="cta-button">CONOCER MÁS</a>
+                <a href="#detalles-garden" class="cta-button">EXPLORAR EL JARDÍN</a>
             </div>
         </section>
 
-        <!-- PRIMERA SECCIÓN CON ANIMACIÓN REVEAL -->
-        <section id="bienvenidos" class="welcome-section reveal">
+        <!-- DETALLES DEL JARDÍN -->
+        <section id="detalles-garden" class="garden-section reveal">
             <div class="two-column-grid">
                 <div class="text-col">
-                    <span class="subtitle-tag">Nuestra Casa</span>
-                    <h2>Bienvenidos a Café con Fe</h2>
+                    <span class="subtitle-tag">Un Espacio Vivo</span>
+                    <h2>Naturaleza, Luz y Serenidad</h2>
                     <p class="body-p">
-                        Hay espacios diseñados para la prisa, y otros pensados para disfrutar el momento. Café con Fe nace como un punto de encuentro acogedor, ideal para quienes buscan un respiro en su rutina diaria.
+                        El Promise Garden es el pulmón verde de Café con Fe. Un ambiente al aire libre finamente decorado donde las plantas, la luz natural y el aire fresco se combinan para ofrecerte una pausa única.
                     </p>
                     <p class="body-p">
-                        Aquí preparamos cada bebida con granos de especialidad seleccionados, creando un ambiente donde las ideas fluyen, las conversaciones se disfrutan y cada persona encuentra un espacio propio de tranquilidad.
+                        Ideal para disfrutar tu café favorito al amanecer, tener una plática amena al atardecer o simplemente desconectarte del ruido exterior.
                     </p>
                     <p class="quote-box">
-                        "Un entorno cálido para compartir, reflexionar y disfrutar de un excelente café."
+                        "Cada rincón de este jardín está diseñado para brindarte frescura, calma y buenas conversaciones."
                     </p>
                 </div>
-                <div class="img-col-right">
-                    <img src="https://i.ibb.co/XZVSSk1W/cafe-espacio.jpg" alt="Instalaciones de Café con Fe" class="styled-img">
-                </div>
-            </div>
-        </section>
-
-        <!-- SEGUNDA SECCIÓN CON ANIMACIÓN REVEAL -->
-        <section class="team-section reveal">
-            <div class="two-column-grid">
-                <div class="img-col-left">
-                    <img src="https://i.ibb.co/qLS3fwTk/equipo-atencion.jpg" alt="Nuestro Equipo en Café con Fe" class="styled-img">
-                </div>
-                <div class="text-col">
-                    <span class="subtitle-tag">Atención Personalizada</span>
-                    <h2>Nuestro Equipo</h2>
-                    <p class="body-p">
-                        Detrás de cada taza hay un equipo humano comprometido con brindarte una experiencia amable, atenta y respetuosa en todo momento.
-                    </p>
-                    <p class="body-p">
-                        Nos alegra adaptarnos a tus necesidades: ya sea que busques un rincón sereno para tus lecturas personales, un espacio cómodo para coordinar tus reuniones grupales, o un tiempo de tranquilidad para tus momentos de reflexión, estamos aquí para servirte con calidez.
-                    </p>
-                    <p class="quote-box">
-                        "El lugar idóneo para tus espacios de estudio, reuniones de grupo o momentos de reflexión diaria."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN DE MENÚ CON IMÁGENES -->
-        <section id="menu" class="section reveal">
-            <h2 class="section-title">Nuestro Menú</h2>
-            <div class="menu-gallery">
-                <div class="menu-image-card">
-                    <img src="https://i.ibb.co/ns9r0G0N/menu-1.jpg" alt="Menú Café con Fe - Página 1">
-                </div>
-                <div class="menu-image-card">
-                    <img src="https://i.ibb.co/tTg7dX9p/menu-2.jpg" alt="Menú Café con Fe - Página 2">
+                <div style="display: flex; justify-content: flex-end;">
+                    <img src="https://i.ibb.co/6R214mHz/garden-bg.jpg" alt="Vista del Promise Garden" class="styled-img">
                 </div>
             </div>
         </section>
@@ -773,46 +634,38 @@
         <p>&copy; 2026 Café con Fe. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACCIÓN, AUDIO Y ANIMACIONES -->
+    <!-- SCRIPT DE NAVEGACIÓN, AUDIO Y ANIMACIONES -->
     <script>
         const bgMusic = document.getElementById('bg-music');
         const introOverlay = document.getElementById('intro-overlay');
 
-        // Reproductor de Música Optimizado
         function playAudio() {
             if (bgMusic && bgMusic.paused) {
                 bgMusic.play().then(() => {
-                    console.log("Música iniciada correctamente.");
-                }).catch(err => {
-                    console.log("Autoplay bloqueado hasta la interacción del usuario:", err);
-                });
+                    console.log("Audio de Garden reproduciéndose.");
+                }).catch(err => console.log("Audio diferido por interacción:", err));
             }
         }
 
-        // Finalizar pantalla de intro
         function completeIntro() {
             document.body.classList.add('intro-complete');
         }
 
-        // Intenta reproducir e iniciar al cargar la página
         window.addEventListener('load', () => {
             playAudio();
-
-            // Oculta la intro automáticamente tras 2.5 segundos
-            setTimeout(completeIntro, 2500);
+            setTimeout(completeIntro, 2300);
         });
 
-        // Activa la música e ingresa al hacer clic o toque
         introOverlay.addEventListener('click', () => {
             playAudio();
             completeIntro();
         });
 
-        ['click', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-            document.addEventListener(event, playAudio, { once: true });
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+            document.addEventListener(evt, playAudio, { once: true });
         });
 
-        // Control del Panel Lateral (Drawer)
+        // Control Drawer
         const openDrawerBtn = document.getElementById('openDrawerBtn');
         const closeDrawerBtn = document.getElementById('closeDrawerBtn');
         const sideDrawer = document.getElementById('sideDrawer');
@@ -832,23 +685,20 @@
         closeDrawerBtn.addEventListener('click', closeDrawer);
         drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Animaciones de Aparición con Scroll (Scroll Reveal)
+        // Scroll Reveal
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal');
             const windowHeight = window.innerHeight;
 
-            reveals.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 120;
-
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 100) {
+                    el.classList.add('active');
                 }
             });
         }
 
         window.addEventListener('scroll', revealOnScroll);
-        // Disparar una vez para animar elementos visibles de entrada
         revealOnScroll();
     </script>
 </body>
